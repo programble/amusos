@@ -19,7 +19,7 @@ CC=clang
 ASM=nasm
 LD=ld
 
-CINCLUDES=-Iinclude/
+CINCLUDES=-Iinclude/ -include include/kernel.h
 CFLAGS=-m32 -std=c99 -Wall -Wextra -Wunreachable-code -Wno-unused-parameter -nostdlib -nostartfiles -nodefaultlibs -nostdinc -ffreestanding -fno-builtin $(CINCLUDES)
 AFLAGS=-f elf
 LDFLAGS=-melf_i386 -T linker.ld

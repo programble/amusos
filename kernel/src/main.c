@@ -16,7 +16,6 @@
  *  along with AmusOS.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <kernel.h>
 #include <multiboot.h>
 #include <gdt.h>
 #include <idt.h>

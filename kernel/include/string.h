@@ -19,8 +19,6 @@
 #ifndef __STRING_H__
 #define __STRING_H__
 
-#include <kernel.h>
-
 u8 *memcpy(u8*, u8*, u32);
 u8 *memset(u8*, u8, u32);
 
