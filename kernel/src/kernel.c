@@ -21,3 +21,14 @@ void halt()
     asm("cli");
     asm("hlt");
 }
+
+bool recursive_panic = false;
+
+void _panic(string message, string function, string file, string line)
+{
+    if (recursive_panic)
+        halt();
+    recursive_panic = true;
+    /* TODO: Print stuff */
+    halt();
+}

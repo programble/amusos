@@ -30,9 +30,6 @@
 /* Macros */
 #define asm(x) __asm__ __volatile__(x)
 
-/* Halt, panic, etc */
-void halt();
-
 /* Types and things */
 
 #define NULL ((void*) 0)
@@ -57,5 +54,12 @@ typedef enum
 /* Linker things */
 extern void *link_kernel_start;
 extern void *link_kernel_end;
+
+/* Halt, panic, etc */
+void halt();
+void _panic(string, string, string, string);
+
+#define panic(x) _panic(x, __FUNCTION__, __FILE__, MACRO_STRING(__LINE__))
+#define assert(x) if (!(x)) _panic("Assert failed: " #x, __FUNCTION__, __FILE, MACRO_STRING(__LINE__))
 
 #endif
