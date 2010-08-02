@@ -48,7 +48,12 @@ clean:
 	rm -f $(AOBJECTS)
 	rm -f $(OUTPUT)
 
+distclean: clean
+	rm -f *~
+	rm -f src/*~
+	rm -f include/*~
+
 check-syntax:
 	$(CC) $(CFLAGS) -fsyntax-only $(CHK_SOURCES)
 
-.PHONY: clean check-syntax
+.PHONY: clean distclean check-syntax
