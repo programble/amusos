@@ -20,7 +20,7 @@ ASM=nasm
 LD=ld
 
 CINCLUDES=-Iinclude/
-CFLAGS=-m32 -std=c99 -Wall -Wextra -Wunreachable-code -nostdlib -nostartfiles -nodefaultlibs -nostdinc -ffreestanding -fno-builtin $(CINCLUDES)
+CFLAGS=-m32 -std=c99 -Wall -Wextra -Wunreachable-code -Wno-unused-parameter -nostdlib -nostartfiles -nodefaultlibs -nostdinc -ffreestanding -fno-builtin $(CINCLUDES)
 AFLAGS=-f elf
 LDFLAGS=-melf_i386 -T linker.ld
 
@@ -38,7 +38,7 @@ $(OUTPUT): $(AOBJECTS) $(COBJECTS)
 	$(LD) $(LDFLAGS) $(AOBJECTS) $(COBJECTS) -o $@
 
 %.co: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) -o $@ -c $<
 
 %.ao: %.asm
 	$(ASM) $(AFLAGS) -o $@ $<
