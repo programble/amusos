@@ -43,7 +43,7 @@ typedef signed int s32;
 typedef unsigned long long u64;
 typedef signed long long s64;
 
-typedef u8* string;
+typedef char* string;
 
 typedef enum
 {
@@ -57,9 +57,9 @@ extern void *link_kernel_end;
 
 /* Halt, panic, etc */
 void halt();
-void _panic(string, string, string, string);
+void _panic(string, const string, const string, const string);
 
-#define panic(x) _panic(x, __FUNCTION__, __FILE__, MACRO_STRING(__LINE__))
-#define assert(x) if (!(x)) _panic("Assert failed: " #x, __FUNCTION__, __FILE, MACRO_STRING(__LINE__))
+#define panic(x) _panic(x, (string) __FUNCTION__, (string) __FILE__, (string) MACRO_STRING(__LINE__))
+#define assert(x) if (!(x)) _panic("Assert failed: " #x, __FUNCTION__, __FILE, MACRO_STRING(__LINE__))
 
 #endif

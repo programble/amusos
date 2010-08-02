@@ -19,10 +19,12 @@
 #include <multiboot.h>
 #include <gdt.h>
 #include <idt.h>
+#include <isr.h>
 
 void kmain(multiboot_header *multiboot, u32 magic)
 {
     gdt_install();
     idt_install();
+    isr_install();
     while (1);
 }

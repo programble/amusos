@@ -16,19 +16,19 @@
  *  along with AmusOS.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-void halt()
-{
-    asm("cli");
-    asm("hlt");
-}
+#ifndef __ISR_H__
+#define __ISR_H__
 
-bool recursive_panic = false;
+#include <idt.h>
 
-void _panic(string message, const string function, const string file, const string line)
+typedef struct
 {
-    if (recursive_panic)
-        halt();
-    recursive_panic = true;
-    /* TODO: Print stuff */
-    halt();
-}
+    u32 gs, fs, es, ds;
+    u32 edi, esi, ebp, esp, ebx, edx, ecx, eax;
+    u32 int_no, err_code;
+    u32 eip, cs, eflags, useresp, ss;
+} registers;
+
+void isr_install();
+
+#endif
