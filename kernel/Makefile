@@ -48,4 +48,7 @@ clean:
 	rm -f $(AOBJECTS)
 	rm -f $(OUTPUT)
 
-.PHONY: clean
+check-syntax:
+	$(CC) $(CFLAGS) -fsyntax-only $(CHK_SOURCES)
+
+.PHONY: clean check-syntax
