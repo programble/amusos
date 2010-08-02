@@ -25,22 +25,22 @@ AFLAGS=-f elf
 LDFLAGS=-melf_i386 -T linker.ld
 
 CSOURCES:=$(wildcard src/*.c)
-COBJECTS:=$(SOURCES:%.c=%.c.o)
+COBJECTS:=$(CSOURCES:%.c=%.co)
 
 ASOURCES:=$(wildcard src/*.asm)
-AOBJECTS:=$(SOURCES:%.asm=%.asm.o)
+AOBJECTS:=$(ASOURCES:%.asm=%.ao)
 
 OUTPUT=kernel.elf
 
-all: $(SOURCES) $(OUTPUT)
+all: $(CSOURCES) $(ASOURCES) $(OUTPUT)
 
 $(OUTPUT): $(AOBJECTS) $(COBJECTS)
 	$(LD) $(LDFLAGS) $(AOBJECTS) $(COBJECTS) -o $@
 
-%.c.o: %.c
+%.co: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
-%.asm.o: %.asm
+%.ao: %.asm
 	$(ASM) $(AFLAGS) -o $@ $<
 
 clean:

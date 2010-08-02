@@ -17,12 +17,13 @@
 
 all: kernel
 
-kernel:
-	@cd kernel/
-	@$(MAKE) $(MFLAGS)
+kernel: force
+	@cd kernel/; $(MAKE) $(MFLAGS)
 
 clean:
-	@cd kernel/
-	@$(MAKE) $(MFLAGS) clean
+	@cd kernel/; $(MAKE) $(MFLAGS) clean
+
+force:
+	@true
 
 .PHONY: clean
