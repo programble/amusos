@@ -16,12 +16,32 @@
  *  along with AmusOS.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <kernel.h>
-#include <multiboot.h>
-#include <gdt.h>
+#ifndef __GDT_H__
+#define __GDT_H__
 
-void kmain(multiboot_header *multiboot, u32 magic)
+#include <kernel.h>
+
+struct gdt_entry
 {
-    gdt_install();
-    while (1);
-}
+    u16 limit_low;
+    u16 base_low;
+    u8 base_middle;
+    u8 access;
+    u8 granularity;
+    u8 base_high;
+} __attribute__((packed));
+typedef struct gdt_entry gdt_entry;
+
+struct gdt_ptr
+{
+    u16 limit;
+    u32 base;
+} __attribute__((packed));
+typedef struct gdt_ptr gdt_ptr;
+
+extern void gdt_flush(); /* gdt.asm */
+
+void gdt_set_gate(int, u64, u64, u8, u8);
+void gdt_install();
+
+#endif
