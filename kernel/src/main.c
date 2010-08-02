@@ -16,7 +16,10 @@
  *  along with <NAME>.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-void kmain(void *multiboot, unsigned int magic)
+#include <kernel.h>
+#include <multiboot.h>
+
+void kmain(multiboot_header *multiboot, u32 magic)
 {
     unsigned char *videoram = (unsigned char *) 0xb8000;
     videoram[0] = 65; /* character 'A' */
