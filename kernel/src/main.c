@@ -33,5 +33,6 @@ void kmain(multiboot_header *multiboot, u32 magic)
 
     tty_install();
     kputs("TEST");
+    assert(false);
     while (1);
 }

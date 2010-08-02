@@ -16,21 +16,22 @@
  *  along with AmusOS.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-void halt()
-{
-    asm("cli");
-    asm("hlt");
-}
+#include <tty.h>
 
-u8 inportb(u16 port)
-{
-    u8 ret;
-    asm("inb %1, %0" : "=a" (ret) : "dN" (port));
-    return ret;
-}
+bool recursive_panic = false;
 
-void outportb(u16 port, u8 data)
+void _panic(const string message, const string function, const string file, const string line)
 {
-    __asm__ __volatile__("outb %1, %0" : : "dN" (port), "a" (data));
+    if (recursive_panic)
+        halt();
+    recursive_panic = true;
+    kputs("\n\nGAME OVER\n\n");
+    kputs(message);
+    kputs("\n\n");
+    kputs(function);
+    kputs("@");
+    kputs(file);
+    kputs(":");
+    kputs(line);
+    halt();
 }
-
