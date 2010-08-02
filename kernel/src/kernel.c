@@ -16,46 +16,8 @@
  *  along with AmusOS.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __KERNEL_H__
-#define __KERNEL_H__
-
-/* Macro macros */
-#define STRING(x) #x
-#define MACRO_STRING(x) STRING(x)
-
-/* Version information */
-#define VERSION "0.1.0"
-#define COMPILED __DATE__
-
-/* Macros */
-#define asm(x) __asm__ __volatile__(x)
-
-/* Halt, panic, etc */
-void halt();
-
-/* Types and things */
-
-#define NULL ((void*) 0)
-
-typedef unsigned char u8;
-typedef signed char s8;
-typedef unsigned short u16;
-typedef signed short s16;
-typedef unsigned int u32;
-typedef signed int s32;
-typedef unsigned long long u64;
-typedef signed long long s64;
-
-typedef u8* string;
-
-typedef enum
+void halt()
 {
-    false,
-    true
-} bool;
-
-/* Linker things */
-extern void *link_kernel_start;
-extern void *link_kernel_end;
-
-#endif
+    asm("cli");
+    asm("hlt");
+}
