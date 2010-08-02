@@ -24,7 +24,7 @@ void halt()
 
 bool recursive_panic = false;
 
-void _panic(string message, const string function, const string file, const string line)
+void _panic(const string message, const string function, const string file, const string line)
 {
     if (recursive_panic)
         halt();

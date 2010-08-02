@@ -52,7 +52,7 @@ extern void isr29();
 extern void isr30();
 extern void isr31();
 
-string fault_table[] =
+const char *fault_table[] =
 {
     "Division By Zero",
     "Debug",
@@ -94,7 +94,7 @@ string fault_table[] =
 void isr_handler(registers *r)
 {
     if (r->int_no < 32)
-        panic(fault_table[r->int_no]);
+        panic((string) fault_table[r->int_no]);
 }
 
 void isr_install()
