@@ -20,7 +20,8 @@ ASM=nasm
 LD=ld
 
 CINCLUDES=-Iinclude/ -include include/kernel.h
-CFLAGS=-m32 -std=c99 -Wall -Wextra -Wunreachable-code -Wno-unused-parameter -nostdlib -nostartfiles -nodefaultlibs -nostdinc -ffreestanding -fno-builtin $(CINCLUDES)
+CWARNINGS=-Wall -Wextra -Wunreachable-code -Wshadow -Wno-unused-parameter -Wpointer-arith -Wbad-function-cast -Wcast-qual -Wcast-align -Wwrite-strings -Wconversion -Wstrict-prototypes -Wold-style-definition -Wmissing-field-initializers -Wpacked -Wredundant-decls -Wnested-externs
+CFLAGS=-m32 -std=c99 -nostdlib -nostartfiles -nodefaultlibs -nostdinc -ffreestanding -fno-builtin $(CWARNINGS) $(CINCLUDES)
 AFLAGS=-f elf
 LDFLAGS=-melf_i386 -T linker.ld
 
