@@ -1,8 +1,11 @@
-Unnamed Project
-===============
+AmusOS
+======
 
-A gaming OS.
+A gaming operating system.
+
+Components
+----------
 
  * Kernel
- * Lib
- * Game => Multiboot Module
+ * Game library
+ * Game modules
