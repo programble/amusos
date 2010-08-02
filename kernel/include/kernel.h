@@ -60,7 +60,7 @@ void halt();
 void _panic(const string, const string, const string, const string);
 
 #define panic(x) _panic(x, (string) __FUNCTION__, (string) __FILE__, (string) MACRO_STRING(__LINE__))
-#define assert(x) if (!(x)) _panic("Assert failed: " #x, __FUNCTION__, __FILE, MACRO_STRING(__LINE__))
+#define assert(x) if (!(x)) _panic("Assert failed: " #x, (string) __FUNCTION__, (string) __FILE__, (string) MACRO_STRING(__LINE__))
 
 /* IO Ports */
 u8 inportb(u16);

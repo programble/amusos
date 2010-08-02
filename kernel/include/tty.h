@@ -16,22 +16,30 @@
  *  along with AmusOS.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <multiboot.h>
-#include <gdt.h>
-#include <idt.h>
-#include <isr.h>
-#include <irq.h>
-#include <tty.h>
+#ifndef __TTY_H__
+#define __TTY_H__
 
-void kmain(multiboot_header *multiboot, u32 magic)
+#include <string.h>
+
+#define TTY_ROWS 25
+#define TTY_COLS 80
+
+typedef enum
 {
-    gdt_install();
-    idt_install();
-    isr_install();
-    irq_install();
-    enable_interrupts();
+    black,
+    blue,
+    green,
+    cyan,
+    red,
+    magenta,
+    brown,
+    gray
+} color;
 
-    tty_install();
-    kputs("TEST");
-    while (1);
-}
+void tty_install();
+
+void kcls();
+void kputch(u8);
+void kputs(string);
+
+#endif
