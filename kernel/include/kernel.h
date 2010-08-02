@@ -27,6 +27,9 @@
 #define VERSION "0.1.0"
 #define COMPILED __DATE__
 
+/* Macros */
+#define asm(x) __asm__ __volatile__(x)
+
 /* Types and things */
 
 #define NULL ((void*) 0)

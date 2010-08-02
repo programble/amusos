@@ -16,30 +16,26 @@
  *  along with AmusOS.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <gdt.h>
+#include <idt.h>
 
-gdt_entry gdt[3];
-gdt_ptr gp;
+idt_entry idt[256];
+idt_ptr idtp;
 
-void gdt_set_gate(int num, u64 base, u64 limit, u8 access, u8 gran)
+void idt_set_gate(u8 num, u64 base, u16 sel, u8 flags)
 {
-    gdt[num].base_low = (base & 0xFFFF);
-    gdt[num].base_middle = (base >> 16) & 0xFF;
-    gdt[num].base_high = (base >> 24) & 0xFF;
-    gdt[num].limit_low = (limit & 0xFFFF);
-    gdt[num].granularity = ((limit >> 16) & 0x0F);
-    gdt[num].granularity |= (gran & 0xF0);
-    gdt[num].access = access;
+    idt[num].base_lo = (base & 0xFFFF);
+    idt[num].base_hi = (base >> 16) & 0xFF;
+    idt[num].sel = sel;
+    idt[num].flags = flags;
+    idt[num].always0 = 0x0;
 }
 
-void gdt_install()
+void idt_install()
 {
-    gp.limit = (sizeof(gdt_entry) * 3) - 1;
-    gp.base = (u32) &gdt;
+    idtp.limit = (sizeof (idt_entry) * 256) - 1;
+    idtp.base = (u32) &idt;
 
-    gdt_set_gate(0, 0, 0, 0, 0);
-    gdt_set_gate(1, 0, 0xFFFFFFFF, 0x9A, 0xCF);
-    gdt_set_gate(2, 0, 0xFFFFFFFF, 0x92, 0xCF);
+    memset((u8*) &idt, 0, sizeof(idt_entry) * 256);
 
-    gdt_flush();
+    idt_load();
 }

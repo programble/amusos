@@ -19,9 +19,11 @@
 #include <kernel.h>
 #include <multiboot.h>
 #include <gdt.h>
+#include <idt.h>
 
 void kmain(multiboot_header *multiboot, u32 magic)
 {
     gdt_install();
+    idt_install();
     while (1);
 }

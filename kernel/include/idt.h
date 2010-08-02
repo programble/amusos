@@ -16,30 +16,32 @@
  *  along with AmusOS.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <gdt.h>
+#ifndef __IDT_H__
+#define __IDT_H__
 
-gdt_entry gdt[3];
-gdt_ptr gp;
+#include <kernel.h>
+#include <string.h>
 
-void gdt_set_gate(int num, u64 base, u64 limit, u8 access, u8 gran)
+struct idt_entry
 {
-    gdt[num].base_low = (base & 0xFFFF);
-    gdt[num].base_middle = (base >> 16) & 0xFF;
-    gdt[num].base_high = (base >> 24) & 0xFF;
-    gdt[num].limit_low = (limit & 0xFFFF);
-    gdt[num].granularity = ((limit >> 16) & 0x0F);
-    gdt[num].granularity |= (gran & 0xF0);
-    gdt[num].access = access;
-}
+    u16 base_lo;
+    u16 sel;
+    u8 always0;
+    u8 flags;
+    u16 base_hi;
+} __attribute__((packed));
+typedef struct idt_entry idt_entry;
 
-void gdt_install()
+struct idt_ptr
 {
-    gp.limit = (sizeof(gdt_entry) * 3) - 1;
-    gp.base = (u32) &gdt;
+    u16 limit;
+    u32 base;
+} __attribute__((packed));
+typedef struct idt_ptr idt_ptr;
 
-    gdt_set_gate(0, 0, 0, 0, 0);
-    gdt_set_gate(1, 0, 0xFFFFFFFF, 0x9A, 0xCF);
-    gdt_set_gate(2, 0, 0xFFFFFFFF, 0x92, 0xCF);
+extern void idt_load(); /* idt.asm */
 
-    gdt_flush();
-}
+void idt_set_gate(u8, u64, u16, u8);
+void idt_install();
+
+#endif
