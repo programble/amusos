@@ -16,32 +16,14 @@
  *  along with AmusOS.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-void halt()
-{
-    asm("cli");
-    asm("hlt");
-}
+#ifndef __IRQ_H__
+#define __IRQ_H__
 
-bool recursive_panic = false;
+#include <isr.h>
 
-void _panic(const string message, const string function, const string file, const string line)
-{
-    if (recursive_panic)
-        halt();
-    recursive_panic = true;
-    /* TODO: Print stuff */
-    halt();
-}
+void irq_install_handler(int irq, void (*handler)(registers*));
+void irq_uninstall_handler(int irq);
 
-u8 inportb(u16 port)
-{
-    u8 ret;
-    asm("inb %1, %0" : "=a" (ret) : "dN" (port));
-    return ret;
-}
+void irq_install();
 
-void outportb(u16 port, u8 data)
-{
-    __asm__ __volatile__("outb %1, %0" : : "dN" (port), "a" (data));
-}
-
+#endif
