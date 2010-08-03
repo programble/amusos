@@ -32,7 +32,7 @@ OUTPUT=test.elf
 all: $(SOURCES) $(OUTPUT)
 
 $(OUTPUT): $(OBJECTS)
-	$(LD) $(LDFLAGS) -o $@ ../../lib/gamelib.lib $<
+	$(LD) $(LDFLAGS) -o $@ ../../lib/gamelib.a $<
 
 %.o: %.c
 	$(CC) $(CFLAGS) -o $@ -c $<

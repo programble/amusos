@@ -18,9 +18,7 @@
 
 #include <stdlib.h>
 
-#include <kernel/tty.h>
-
 void foo()
 {
-    kputs("FOOBAR");
+    return;
 }
