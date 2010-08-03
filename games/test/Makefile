@@ -22,7 +22,7 @@ INCLUDES=-Iinclude/ -I../../lib/include/
 WARNINGS=-Wall -Wextra -Wunreachable-code -Wshadow -Wno-unused-parameter -Wpointer-arith -Wbad-function-cast -Wcast-align -Wwrite-strings -Wmissing-field-initializers -Wredundant-decls -Wnested-externs
 CFLAGS=-m32 -std=c99 -nostdlib -nostartfiles -nodefaultlibs -nostdinc -ffreestanding -fno-builtin $(WARNINGS) $(INCLUDES)
 
-LDFLAGS=-melf_i386 -nostdlib -Ttext 0x200000 -L../../lib/src
+LDFLAGS=-melf_i386 -nostdlib -Ttext 0x200000 -L../../lib/
 
 SOURCES:=$(wildcard src/*.c)
 OBJECTS:=$(SOURCES:%.c=%.o)

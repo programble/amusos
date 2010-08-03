@@ -23,7 +23,7 @@ CINCLUDES=-Iinclude/ -include include/kernel.h
 CWARNINGS=-Wall -Wextra -Wunreachable-code -Wshadow -Wno-unused-parameter -Wpointer-arith -Wbad-function-cast -Wcast-align -Wwrite-strings -Wmissing-field-initializers -Wredundant-decls -Wnested-externs
 CFLAGS=-m32 -std=c99 -nostdlib -nostartfiles -nodefaultlibs -nostdinc -ffreestanding -fno-builtin $(CWARNINGS) $(CINCLUDES)
 AFLAGS=-f elf
-LDFLAGS=-melf_i386 -T linker.ld
+LDFLAGS=-melf_i386 -nostdlib -T linker.ld
 
 CSOURCES:=$(wildcard src/*.c)
 COBJECTS:=$(CSOURCES:%.c=%.co)
