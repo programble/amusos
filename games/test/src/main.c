@@ -22,3 +22,8 @@ void main()
 {
     foo();
 }
+
+void _start()
+{
+    main();
+}
