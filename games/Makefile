@@ -15,26 +15,22 @@
 # You should have received a copy of the GNU General Public License
 # along with AmusOS.  If not, see <http://www.gnu.org/licenses/>.
 
-all: kernel lib games
+GAMES:=$(wildcard */)
 
-kernel:
-	@cd kernel/; $(MAKE) $(MFLAGS)
-
-lib:
-	@cd lib/; $(MAKE) $(MFLAGS)
-
-games:
-	@cd games/; $(MAKE) $(MFLAGS)
+all:
+	@for game in $(GAMES); do \
+	cd $${game}; $(MAKE) $(MFLAGS); \
+	done
 
 clean:
-	@cd kernel/; $(MAKE) $(MFLAGS) clean
-	@cd lib/; $(MAKE) $(MFLAGS) clean
-	@cd games/; $(MAKE) $(MFLAGS) clean
+	@for game in $(GAMES); do \
+	cd $${game}; $(MAKE) $(MFLAGS) clean; \
+	done
 
 distclean:
 	rm -f *~
-	@cd kernel/; $(MAKE) $(MFLAGS) distclean
-	@cd lib/; $(MAKE) $(MFLAGS) distclean
-	@cd games/; $(MAKE) $(MFLAGS) distclean
+	@for game in $(GAMES); do \
+	cd $${game}; $(MAKE) $(MFLAGS) distclean; \
+	done
 
-.PHONY: clean distclean kernel lib games
+.PHONY: clean distclean all
