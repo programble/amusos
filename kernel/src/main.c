@@ -32,7 +32,6 @@ void kmain(multiboot_header *multiboot, u32 magic)
     enable_interrupts();
 
     tty_install();
-    kputs("TEST");
-    assert(false);
-    while (1);
+
+    panic("No game to load");
 }
