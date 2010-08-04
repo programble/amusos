@@ -25,6 +25,8 @@
 
 void kmain(multiboot_header *multiboot, u32 magic)
 {
+    assert(magic == MULTIBOOT_BOOTLOADER_MAGIC);
+    
     gdt_install();
     idt_install();
     isr_install();
