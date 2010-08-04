@@ -25,7 +25,7 @@ void _panic(const string message, const string function, const string file, cons
     if (recursive_panic)
         halt();
     recursive_panic = true;
-    kputs("\n\nGAME OVER\n\n");
+    kputs("\n\nERROR\n\n");
     kputs(message);
     kputs("\n\n");
     kputs(function);

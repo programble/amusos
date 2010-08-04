@@ -26,6 +26,9 @@ lib:
 games:
 	@cd games/; $(MAKE) $(MFLAGS)
 
+qemu: kernel
+	qemu -kernel kernel/kernel.elf
+
 clean:
 	@cd kernel/; $(MAKE) $(MFLAGS) clean
 	@cd lib/; $(MAKE) $(MFLAGS) clean
@@ -37,4 +40,4 @@ distclean:
 	@cd lib/; $(MAKE) $(MFLAGS) distclean
 	@cd games/; $(MAKE) $(MFLAGS) distclean
 
-.PHONY: clean distclean kernel lib games
+.PHONY: clean distclean kernel lib games qemu
