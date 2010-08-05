@@ -62,7 +62,7 @@ clean:
 
 distclean:
 	rm -f *~
-	rm -f iso/
+	rm -rf iso/
 	@cd kernel/; $(MAKE) $(MFLAGS) distclean
 	@cd lib/; $(MAKE) $(MFLAGS) distclean
 	@cd games/; $(MAKE) $(MFLAGS) distclean
