@@ -39,11 +39,14 @@ void kmain(multiboot_header *multiboot, u32 magic)
 
     tty_install();
 
-    /* Test syscall */
-    iasm("mov eax, 0x02; mov ebx, 0x68; int 0x80");
-    iasm("mov eax, 0x02; mov ebx, 0x65; int 0x80");
-    iasm("mov eax, 0x02; mov ebx, 0x6c; int 0x80; int 0x80");
-    iasm("mov eax, 0x02; mov ebx, 0x6f; int 0x80");
+    assert(multiboot->flags >> 3 & 1, "No game to load");
+    assert(multiboot->mods_count, "No game to load");
 
-    panic("No game to load");
+    puts("Loading game: ");
+    puts(multiboot->mods_addr->name);
+    putch('\n');
+
+    void (*game)(void) = load_game((void*) multiboot->mods_addr->start);
+    game();
+    panic("Game exited unexpectedly");
 }

@@ -32,6 +32,14 @@ typedef struct
     u32 type;
 } mmap_field;
 
+typedef struct module
+{
+    u32 start;
+    u32 end;
+    string name;
+    bool reserved;
+} module;
+
 typedef struct
 {
     u32 flags;
@@ -40,7 +48,7 @@ typedef struct
     u32 boot_device;
     string cmdline;
     u32 mods_count;
-    u32 *mods_addr;
+    module *mods_addr;
     u32 syms[4];
     u32 mmap_length;
     mmap_field *mmap_addr;
