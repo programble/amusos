@@ -16,30 +16,33 @@
  *  along with AmusOS.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <multiboot.h>
-#include <gdt.h>
-#include <idt.h>
-#include <isr.h>
-#include <irq.h>
 #include <syscall.h>
+
 #include <tty.h>
 
-void kmain(multiboot_header *multiboot, u32 magic)
+void syscall_test()
 {
-    assert(magic == MULTIBOOT_BOOTLOADER_MAGIC);
+    kputs("Syscall test");
+}
+
+static void *syscalls[SYSCALL_COUNT] =
+{
+    syscall_test,
+};
+
+void syscall_handler(registers *r)
+{
+    if (r->eax >= SYSCALL_COUNT)
+        panic("Invalid system call");
     
-    gdt_install();
-    idt_install();
-    isr_install();
-    irq_install();
-    enable_interrupts();
+    void (*syscall)(u32, u32, u32, u32, u32);
+    syscall = syscalls[r->eax];
+    syscall(r->ebx, r->ecx, r->edx, r->esi, r->edi);
+}
 
-    syscall_install();
+extern void isr_syscall();
 
-    tty_install();
-
-    /* Test syscall */
-    iasm("mov eax, 0x0; int 0x80");
-
-    panic("No game to load");
+void syscall_install()
+{
+    idt_set_gate(SYSCALL_INTERRUPT, (unsigned) isr_syscall, 0x08, 0x8E);
 }

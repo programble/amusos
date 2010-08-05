@@ -29,6 +29,7 @@
 
 /* Macros */
 #define asm(x) __asm__ __volatile__(x)
+#define iasm(x) __asm__ __volatile__(".intel_syntax noprefix;" x ";.att_syntax prefix")
 
 /* Types and things */
 
