@@ -1,0 +1,3 @@
+title AmusOS Test
+kernel /boot/kernel.elf
+module /games/test.elf

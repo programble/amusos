@@ -15,7 +15,11 @@
 # You should have received a copy of the GNU General Public License
 # along with AmusOS.  If not, see <http://www.gnu.org/licenses/>.
 
-all: kernel lib games
+STAGE2=/usr/lib/grub/i386-pc/stage2_eltorito
+GENISOIMAGE=genisoimage
+ISO=amusos.iso
+
+all: $(ISO)
 
 kernel:
 	@cd kernel/; $(MAKE) $(MFLAGS)
@@ -26,8 +30,24 @@ lib:
 games:
 	@cd games/; $(MAKE) $(MFLAGS)
 
-qemu: kernel
-	qemu -kernel kernel/kernel.elf
+iso: $(ISO)
+
+$(ISO): kernel lib games
+	mkdir -p iso
+	mkdir -p iso/boot/grub
+	mkdir -p iso/games
+	cp $(STAGE2) iso/boot/grub/stage2_eltorito
+	cp kernel/kernel.elf iso/boot/kernel.elf
+	echo "default 0" > iso/boot/grub/menu.lst
+	echo "timeout 10" >> iso/boot/grub/menu.lst
+	for game in games/*/; do \
+	cat $${game}/menu.lst >> iso/boot/grub/menu.lst; \
+	cp $${game}/*.elf iso/games/; \
+	done
+	genisoimage -R -b boot/grub/stage2_eltorito -no-emul-boot -boot-load-size 4 -boot-info-table -o $(ISO) iso/
+
+qemu: $(ISO)
+	qemu -cdrom $(ISO)
 
 todo:
 	@grep -rInso 'TODO: \([^*]\+\)' kernel; true
@@ -35,14 +55,16 @@ todo:
 	@grep -rInso 'TODO: \([^*]\+\)' games; true
 
 clean:
+	rm -rf iso/
 	@cd kernel/; $(MAKE) $(MFLAGS) clean
 	@cd lib/; $(MAKE) $(MFLAGS) clean
 	@cd games/; $(MAKE) $(MFLAGS) clean
 
 distclean:
 	rm -f *~
+	rm -f iso/
 	@cd kernel/; $(MAKE) $(MFLAGS) distclean
 	@cd lib/; $(MAKE) $(MFLAGS) distclean
 	@cd games/; $(MAKE) $(MFLAGS) distclean
 
-.PHONY: clean distclean kernel lib games qemu todo
+.PHONY: clean distclean kernel lib games qemu todo iso
