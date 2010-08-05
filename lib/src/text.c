@@ -20,11 +20,11 @@
 
 void putch(char c)
 {
-    __asm__ __volatile__("mov $0, %%eax; mov %0, %%ebx; int $" MACRO_STRING(SYSCALL_INTERRUPT) ";" : : "m" (c) : "eax", "ebx");
+    __asm__ __volatile__("mov $0x02, %%eax; mov %0, %%ebx; int $" MACRO_STRING(SYSCALL_INTERRUPT) ";" : : "m" (c) : "eax", "ebx");
 }
 
 void puts(string s)
 {
-    for (char *c = s; c != 0x0; c++)
-        putch(*c);
+    for (char *c = s; *c != 0x0; c++)
+      putch(*c);
 }
