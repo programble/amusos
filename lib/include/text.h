@@ -22,6 +22,11 @@
 #include <common.h>
 #include <syscall.h>
 
+/**
+ * Text-mode colors.
+ * Enumeration of colors text-mode is capable of
+ * displaying.
+ */
 typedef enum
 {
     black,
@@ -34,11 +39,25 @@ typedef enum
     gray
 } color;
 
-extern void putch(char);
-extern void puts(string);
-extern void cls();
-extern void set_foreground_color(color, bool);
-extern void set_background_color(color, bool);
-extern void set_colors(color, bool, color, bool);
+/**
+ * Puts a character on screen in text-mode.
+ * Puts a character at the current text-mode cursor
+ * position and advances the cursor by one.
+ * @param c The character to put on screen
+ */
+void putch(char c);
+
+/**
+ * Puts a string on screen in text-mode.
+ * Puts a string at the current text-mode cursor position
+ * and advances the cursor by the length of the string.
+ * @param s The string to put on screen
+ */
+void puts(string s);
+
+void cls();
+void set_foreground_color(color, bool);
+void set_background_color(color, bool);
+void set_colors(color, bool, color, bool);
 
 #endif

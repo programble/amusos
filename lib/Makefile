@@ -39,6 +39,9 @@ $(OUTPUT): $(OBJECTS)
 %.o: %.c
 	$(CC) $(CFLAGS) -o $@ -c $<
 
+doc: $(wildcard include/*.h) .doxygenrc
+	doxygen .doxygenrc
+
 clean:
 	rm -f $(OBJECTS)
 	rm -f $(OUTPUT)
