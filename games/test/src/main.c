@@ -16,14 +16,9 @@
  *  along with AmusOS.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <stdlib.h>
-
-void main()
-{
-    foo();
-}
+#include <text.h>
 
 void _start()
 {
-    main();
+    puts("Hello from a game!");
 }
