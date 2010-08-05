@@ -90,4 +90,31 @@ void set_background_color(color background, bool bright);
  */
 void set_colors(color foreground, bool forebright, color background, bool backbright);
 
+/**
+ * Gets the current text-mode foreground color.
+ * Gets the current text-mode foreground color and brightness.
+ * @param foreground Where to store the color
+ * @param bright Where to store the brightness
+ */
+void get_foreground_color(color *foreground, bool *bright);
+
+/**
+ * Gets the current text-mode background color.
+ * Gets the current text-mode background color and brightness.
+ * @param background Where to store the color
+ * @param bright Where to store the brightness
+ */
+void get_background_color(color *background, bool *bright);
+
+/**
+ * Gets the current text-mode foreground and background colors.
+ * Gets the current text-mode foreground and background
+ * colors and brightnesses.
+ * @param foreground Where to store the foreground color
+ * @param forebright Where to store the foreground brightness
+ * @param background Where to store the background color
+ * @param backbright Where to store the background brightness
+ */
+void get_colors(color *foreground, bool *forebright, color *background, bool *backbright);
+
 #endif

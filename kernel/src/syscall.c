@@ -33,6 +33,8 @@ static void *syscalls[SYSCALL_COUNT] =
     /* 3 */ putch,
     /* 4 */ set_foreground_color,
     /* 5 */ set_background_color,
+    /* 6 */ get_foreground_color,
+    /* 7 */ get_background_color,
 };
 
 void syscall_handler(registers *r)

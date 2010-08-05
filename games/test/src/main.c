@@ -29,4 +29,9 @@ void _start()
         set_colors(fore[i], true, back[i], false);
         putch(text[i]);
     }
+    color foo;
+    bool bar;
+    get_foreground_color(&foo, &bar);
+    if (foo == green)
+        puts("baz");
 }

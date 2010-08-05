@@ -49,3 +49,19 @@ void set_colors(color f, bool fb, color b, bool bb)
     set_foreground_color(f, fb);
     set_background_color(b, bb);
 }
+
+void get_foreground_color(color *c, bool *b)
+{
+    syscall2(6, c, b);
+}
+
+void get_background_color(color *c, bool *b)
+{
+    syscall2(7, c, b);
+}
+
+void get_colors(color *f, bool *fb, color *b, bool *bb)
+{
+    get_foreground_color(f, fb);
+    get_background_color(b, bb);
+}

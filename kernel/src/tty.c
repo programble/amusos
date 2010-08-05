@@ -138,6 +138,18 @@ void set_background_color(color c, bool bright)
     background_bright = bright;
 }
 
+void get_foreground_color(color *c, bool *bright)
+{
+    *c = foreground_color;
+    *bright = foreground_bright;
+}
+
+void get_background_color(color *c, bool *bright)
+{
+    *c = background_color;
+    *bright = background_bright;
+}
+
 void tty_install()
 {
     vram = (u16*) 0xb8000;
