@@ -21,5 +21,11 @@
 void _start()
 {
     cls();
-    puts("Hello from a game :D\n");
+    char text[] = "RAINBOW";
+    color colors[] = { blue, green, cyan, red, magenta, blue, green };
+    for (int i = 0; i < 7; i++)
+    {
+        set_foreground_color(colors[i], true);
+        putch(text[i]);
+    }
 }

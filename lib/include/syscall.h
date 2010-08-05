@@ -27,4 +27,6 @@
 
 #define syscall1(x, y) __asm__ __volatile__("mov $" MACRO_STRING(x) ", %%eax; mov %0, %%ebx; int $" MACRO_STRING(SYSCALL_INTERRUPT) ";" : : "m" (y) : "eax", "ebx")
 
+#define syscall2(x, y, z) __asm__ __volatile__("mov $" MACRO_STRING(x) ", %%eax; mov %0, %%ebx; mov %1, %%ecx; int $" MACRO_STRING(SYSCALL_INTERRUPT) ";" : : "m" (y), "m" (z) : "eax", "ebx", "ecx")
+
 #endif

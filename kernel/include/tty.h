@@ -42,4 +42,7 @@ void cls();
 void putch(u8);
 void puts(string);
 
+void set_foreground_color(color, bool);
+void set_background_color(color, bool);
+
 #endif

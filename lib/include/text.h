@@ -22,8 +22,23 @@
 #include <common.h>
 #include <syscall.h>
 
+typedef enum
+{
+    black,
+    blue,
+    green,
+    cyan,
+    red,
+    magenta,
+    brown,
+    gray
+} color;
+
 extern void putch(char);
 extern void puts(string);
 extern void cls();
+extern void set_foreground_color(color, bool);
+extern void set_background_color(color, bool);
+extern void set_colors(color, bool, color, bool);
 
 #endif

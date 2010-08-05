@@ -27,10 +27,12 @@ void syscall_nop()
 
 static void *syscalls[SYSCALL_COUNT] =
 {
-    syscall_nop, /* TODO: syscall_malloc */
-    syscall_nop, /* TODO: syscall_free */
-    cls,
-    putch,
+    /* 0 */ syscall_nop, /* TODO: syscall_malloc */
+    /* 1 */ syscall_nop, /* TODO: syscall_free */
+    /* 2 */ cls,
+    /* 3 */ putch,
+    /* 4 */ set_foreground_color,
+    /* 5 */ set_background_color,
 };
 
 void syscall_handler(registers *r)

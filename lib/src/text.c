@@ -33,3 +33,19 @@ void cls()
 {
     syscall0(0x02);
 }
+
+void set_foreground_color(color c, bool b)
+{
+    syscall2(4, c, b);
+}
+
+void set_background_color(color c, bool b)
+{
+    syscall2(5, c, b);
+}
+
+void set_colors(color f, bool fb, color b, bool bb)
+{
+    set_foreground_color(f, fb);
+    set_background_color(b, bb);
+}

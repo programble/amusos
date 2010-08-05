@@ -126,6 +126,18 @@ void puts(string s)
         putch(s[i]);
 }
 
+void set_foreground_color(color c, bool bright)
+{
+    foreground_color = c;
+    foreground_bright = bright;
+}
+
+void set_background_color(color c, bool bright)
+{
+    background_color = c;
+    background_bright = bright;
+}
+
 void tty_install()
 {
     vram = (u16*) 0xb8000;
