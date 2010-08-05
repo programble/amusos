@@ -1,6 +1,10 @@
 System Calls
 ============
 
+    mov eax, 0
+    mov evx, 1
+    int 0x80
+
 Memory System Calls (0-1)
 -------------------------
 
