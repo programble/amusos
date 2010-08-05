@@ -25,22 +25,12 @@ void syscall_nop()
     return;
 }
 
-void syscall_cls()
-{
-    cls();
-}
-
-void syscall_putch(char c)
-{
-    putch(c);
-}
-
 static void *syscalls[SYSCALL_COUNT] =
 {
     syscall_nop, /* TODO: syscall_malloc */
     syscall_nop, /* TODO: syscall_free */
-    syscall_cls,
-    syscall_putch,
+    cls,
+    putch,
 };
 
 void syscall_handler(registers *r)
