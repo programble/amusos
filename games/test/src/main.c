@@ -39,4 +39,6 @@ void _start()
     char x = get_cursor_x();
     if (x == 13)
         puts("bar");
+    warp_cursor(-2, +1);
+    puts("baz");
 }

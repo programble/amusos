@@ -101,3 +101,25 @@ void get_cursor_position(char *x, char *y)
     *x = get_cursor_x();
     *y = get_cursor_y();
 }
+
+char warp_cursor_x(signed char x)
+{
+    char old = get_cursor_x();
+    char new = old + x;
+    set_cursor_x(new);
+    return new;
+}
+
+char warp_cursor_y(signed char y)
+{
+    char old = get_cursor_y();
+    char new = old + y;
+    set_cursor_y(new);
+    return new;
+}
+
+void warp_cursor(signed char x, signed char y)
+{
+    warp_cursor_x(x);
+    warp_cursor_y(y);
+}

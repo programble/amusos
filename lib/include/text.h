@@ -155,4 +155,25 @@ char get_cursor_y();
  */
 void get_cursor_position(char *x, char *y);
 
+/**
+ * Warp the text-mode hardware cursor's x position.
+ * @param x How much to warp by
+ * @return The new x position
+ */
+char warp_cursor_x(signed char x);
+
+/**
+ * Warp the text-mode hardware cursor's y position.
+ * @param y How much to warp by
+ * @return The new y position
+ */
+char warp_cursor_y(signed char y);
+
+/**
+ * Warp the text-mode hardware cursor's position.
+ * @param x How much to warp x by
+ * @param y How much to warp y by
+ */
+void warp_cursor(signed char x, signed char y);
+
 #endif

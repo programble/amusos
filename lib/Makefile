@@ -45,6 +45,7 @@ doc: $(wildcard include/*.h) .doxygenrc
 clean:
 	rm -f $(OBJECTS)
 	rm -f $(OUTPUT)
+	rm -rf doc/
 
 distclean: clean
 	rm -f *~
