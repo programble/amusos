@@ -21,5 +21,5 @@
 void _start()
 {
     cls();
-    puts("Hello from a game :D");
+    puts("Hello from a game :D\n");
 }

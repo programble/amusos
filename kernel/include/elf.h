@@ -26,8 +26,16 @@
  
  
 /* Standard ELF types.  */
- 
+
+#if false
 #include <stdint.h>
+#else
+typedef u16 uint16_t;
+typedef u32 uint32_t;
+typedef s32 int32_t;
+typedef u64 uint64_t;
+typedef s64 int64_t;
+#endif
  
 /* Type for a 16-bit quantity.  */
 typedef uint16_t Elf32_Half;
