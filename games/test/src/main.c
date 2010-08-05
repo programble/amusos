@@ -20,5 +20,5 @@
 
 void _start()
 {
-    puts("Hello from a game!");
+    puts("Hello from a game :D");
 }
