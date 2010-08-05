@@ -29,6 +29,11 @@ games:
 qemu: kernel
 	qemu -kernel kernel/kernel.elf
 
+todo:
+	@grep -rInso 'TODO: \([^*]\+\)' kernel; true
+	@grep -rInso 'TODO: \([^*]\+\)' lib; true
+	@grep -rInso 'TODO: \([^*]\+\)' games; true
+
 clean:
 	@cd kernel/; $(MAKE) $(MFLAGS) clean
 	@cd lib/; $(MAKE) $(MFLAGS) clean
@@ -40,4 +45,4 @@ distclean:
 	@cd lib/; $(MAKE) $(MFLAGS) distclean
 	@cd games/; $(MAKE) $(MFLAGS) distclean
 
-.PHONY: clean distclean kernel lib games qemu
+.PHONY: clean distclean kernel lib games qemu todo
