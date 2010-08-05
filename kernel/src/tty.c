@@ -38,7 +38,7 @@ void update_cursor()
 
 void cls()
 {
-    assert(vram);
+    assert(vram, "TTY not installed");
 
     u32 blank = ' ' | ((((background_color | (background_bright << 3)) << 4) | ((foreground_color | (foreground_bright << 3)) & 0x0F)) << 8);
     for (u8 i = 0; i < TTY_ROWS; i++)
@@ -50,7 +50,7 @@ void cls()
 
 void scroll()
 {
-    assert(vram);
+    assert(vram, "TTY not installed");
 
     u32 blank = ' ' | ((((background_color | (background_bright << 3)) << 4) | ((foreground_color | (foreground_bright << 3)) << 4)) << 8);
 
@@ -80,7 +80,7 @@ void move_cursor_back()
 
 void putch(u8 c)
 {
-    assert(vram);
+    assert(vram, "TTY not installed");
 
     /* Backspace */
     switch (c)

@@ -23,10 +23,11 @@
 #include <irq.h>
 #include <syscall.h>
 #include <tty.h>
+#include <loader.h>
 
 void kmain(multiboot_header *multiboot, u32 magic)
 {
-    assert(magic == MULTIBOOT_BOOTLOADER_MAGIC);
+    assert(magic == MULTIBOOT_BOOTLOADER_MAGIC, "Invalid bootloader magic");
     
     gdt_install();
     idt_install();
