@@ -48,4 +48,10 @@ void set_background_color(color, bool);
 void get_foreground_color(color*, bool*);
 void get_background_color(color*, bool*);
 
+void set_cursor_x(u8);
+void set_cursor_y(u8);
+
+u8 get_cursor_x();
+u8 get_cursor_y();
+
 #endif

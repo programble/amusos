@@ -34,4 +34,9 @@ void _start()
     get_foreground_color(&foo, &bar);
     if (foo == green)
         puts("baz");
+    set_cursor_position(10, 10);
+    puts("foo");
+    char x = get_cursor_x();
+    if (x == 13)
+        puts("bar");
 }

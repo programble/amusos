@@ -25,6 +25,9 @@ void syscall_nop()
     return;
 }
 
+SYSCALL_RETURN_WRAP(u8, get_cursor_x);
+SYSCALL_RETURN_WRAP(u8, get_cursor_y);
+
 static void *syscalls[SYSCALL_COUNT] =
 {
     /* 0 */ syscall_nop, /* TODO: syscall_malloc */
@@ -35,6 +38,10 @@ static void *syscalls[SYSCALL_COUNT] =
     /* 5 */ set_background_color,
     /* 6 */ get_foreground_color,
     /* 7 */ get_background_color,
+    /* 8 */ set_cursor_x,
+    /* 9 */ set_cursor_y,
+    /* 10 */ SYSCALL_WRAPPER(get_cursor_x),
+    /* 11 */ SYSCALL_WRAPPER(get_cursor_y),
 };
 
 void syscall_handler(registers *r)

@@ -117,4 +117,42 @@ void get_background_color(color *background, bool *bright);
  */
 void get_colors(color *foreground, bool *forebright, color *background, bool *backbright);
 
+/**
+ * Set the text-mode hardware cursor's x position.
+ * @param x The x position to set
+ */
+void set_cursor_x(char x);
+
+/**
+ * Set the text-mode hardware cursor's y position.
+ * @param y The y position to set
+ */
+void set_cursor_y(char y);
+
+/**
+ * Set the text-mode hardware cursor's position.
+ * @param x The x position to set
+ * @param y The y position to set
+ */
+void set_cursor_position(char x, char y);
+
+/**
+ * Get the text-mode hardware cursor's x position.
+ * @return The x position
+ */
+char get_cursor_x();
+
+/**
+ * Get the text-mode hardware cursor's y position.
+ * @return The y position
+ */
+char get_cursor_y();
+
+/**
+ * Get the text-mode hardware cursor's position.
+ * @param x Where to store the x position
+ * @param y Where to store the y position
+ */
+void get_cursor_position(char *x, char *y);
+
 #endif

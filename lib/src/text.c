@@ -65,3 +65,39 @@ void get_colors(color *f, bool *fb, color *b, bool *bb)
     get_foreground_color(f, fb);
     get_background_color(b, bb);
 }
+
+void set_cursor_x(char x)
+{
+    syscall1(8, x);
+}
+
+void set_cursor_y(char y)
+{
+    syscall1(9, y);
+}
+
+void set_cursor_position(char x, char y)
+{
+    set_cursor_x(x);
+    set_cursor_y(y);
+}
+
+char get_cursor_x()
+{
+    char *x;
+    syscall1(10, x);
+    return *x;
+}
+
+char get_cursor_y()
+{
+    char *y;
+    syscall1(11, y);
+    return *y;
+}
+
+void get_cursor_position(char *x, char *y)
+{
+    *x = get_cursor_x();
+    *y = get_cursor_y();
+}

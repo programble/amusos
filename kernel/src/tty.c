@@ -150,6 +150,26 @@ void get_background_color(color *c, bool *bright)
     *bright = background_bright;
 }
 
+void set_cursor_x(u8 x)
+{
+    cursor.x = x;
+}
+
+void set_cursor_y(u8 y)
+{
+    cursor.y = y;
+}
+
+u8 get_cursor_x()
+{
+    return cursor.x;
+}
+
+u8 get_cursor_y()
+{
+    return cursor.y;
+}
+
 void tty_install()
 {
     vram = (u16*) 0xb8000;
