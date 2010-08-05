@@ -24,8 +24,6 @@
 
 #define NULL ((void*) 0)
 
-#define SYSCALL_INTERRUPT 0x80
-
 typedef enum
 {
     false,

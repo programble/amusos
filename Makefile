@@ -27,7 +27,7 @@ kernel:
 lib:
 	@cd lib/; $(MAKE) $(MFLAGS)
 
-games:
+games: lib
 	@cd games/; $(MAKE) $(MFLAGS)
 
 iso: $(ISO)

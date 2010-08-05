@@ -16,14 +16,15 @@
  *  along with AmusOS.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __TEXT_H__
-#define __TEXT_H__
+#ifndef __SYSCALL_H__
+#define __SYSCALL_H__
 
 #include <common.h>
-#include <syscall.h>
 
-extern void putch(char);
-extern void puts(string);
-extern void cls();
+#define SYSCALL_INTERRUPT 0x80
+
+#define syscall0(x) __asm__ __volatile__("mov $" MACRO_STRING(x) ", %%eax; int $" MACRO_STRING(SYSCALL_INTERRUPT) ";" : : : "eax")
+
+#define syscall1(x, y) __asm__ __volatile__("mov $" MACRO_STRING(x) ", %%eax; mov %0, %%ebx; int $" MACRO_STRING(SYSCALL_INTERRUPT) ";" : : "m" (y) : "eax", "ebx")
 
 #endif

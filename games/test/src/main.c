@@ -20,5 +20,6 @@
 
 void _start()
 {
+    cls();
     puts("Hello from a game :D");
 }
