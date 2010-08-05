@@ -56,6 +56,7 @@ todo:
 
 clean:
 	rm -rf iso/
+	rm -f $(ISO)
 	@cd kernel/; $(MAKE) $(MFLAGS) clean
 	@cd lib/; $(MAKE) $(MFLAGS) clean
 	@cd games/; $(MAKE) $(MFLAGS) clean
@@ -63,6 +64,7 @@ clean:
 distclean:
 	rm -f *~
 	rm -rf iso/
+	rm -f $(ISO)
 	@cd kernel/; $(MAKE) $(MFLAGS) distclean
 	@cd lib/; $(MAKE) $(MFLAGS) distclean
 	@cd games/; $(MAKE) $(MFLAGS) distclean
