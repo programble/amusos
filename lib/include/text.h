@@ -55,9 +55,39 @@ void putch(char c);
  */
 void puts(string s);
 
+/**
+ * Clears the text-mode screen.
+ * Fills the entire text-mode screen with blanks
+ * and positions the text-mode cursor in the top-left.
+ */
 void cls();
-void set_foreground_color(color, bool);
-void set_background_color(color, bool);
-void set_colors(color, bool, color, bool);
+
+/**
+ * Sets the text-mode foreground color.
+ * Sets the text-mode foreground color
+ * and brightness.
+ * @param foreground The color to set
+ * @param bright Whether or not the color should be bright
+ */
+void set_foreground_color(color foreground, bool bright);
+
+/**
+ * Sets the text-mode background color.
+ * Sets the text-mode background color
+ * and brightness.
+ * @param background The color to set
+ * @param bright Whether or not the color should be bright
+ */
+void set_background_color(color background, bool bright);
+
+/**
+ * Sets the text-mode foreground and background colors.
+ * Sets the text-mode foreground and background colors and brightnesses.
+ * @param foreground The foreground color
+ * @param forebright The brightness of the foreground color
+ * @param background The background color
+ * @param backbright The background brightness
+ */
+void set_colors(color foreground, bool forebright, color background, bool backbright);
 
 #endif

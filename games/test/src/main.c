@@ -22,10 +22,11 @@ void _start()
 {
     cls();
     char text[] = "RAINBOW";
-    color colors[] = { blue, green, cyan, red, magenta, blue, green };
+    color fore[] = { blue, green, cyan, red, magenta, blue, green };
+    color back[] = { magenta, red, cyan, green, blue, magenta, red };
     for (int i = 0; i < 7; i++)
     {
-        set_foreground_color(colors[i], true);
+        set_colors(fore[i], true, back[i], false);
         putch(text[i]);
     }
 }
