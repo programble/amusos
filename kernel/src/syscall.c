@@ -22,7 +22,7 @@
 
 void syscall_test()
 {
-    kputs("Syscall test");
+    puts("Syscall test");
 }
 
 static void *syscalls[SYSCALL_COUNT] =

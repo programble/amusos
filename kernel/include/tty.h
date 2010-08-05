@@ -38,8 +38,8 @@ typedef enum
 
 void tty_install();
 
-void kcls();
-void kputch(u8);
-void kputs(string);
+void cls();
+void putch(u8);
+void puts(string);
 
 #endif

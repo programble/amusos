@@ -36,7 +36,7 @@ void update_cursor()
     outportb(0x3D5, temp);
 }
 
-void kcls()
+void cls()
 {
     assert(vram);
 
@@ -78,7 +78,7 @@ void move_cursor_back()
         cursor.x--;
 }
 
-void kputch(u8 c)
+void putch(u8 c)
 {
     assert(vram);
 
@@ -87,7 +87,7 @@ void kputch(u8 c)
     {
     case '\b':
         move_cursor_back();
-        kputch(' ');
+        putch(' ');
         move_cursor_back();
         break;
     case '\t':
@@ -120,10 +120,10 @@ void kputch(u8 c)
     update_cursor();
 }
 
-void kputs(string s)
+void puts(string s)
 {
     for (u32 i = 0; i < strlen(s); i++)
-        kputch(s[i]);
+        putch(s[i]);
 }
 
 void tty_install()
@@ -133,5 +133,5 @@ void tty_install()
     background_color = black;
     foreground_bright = false;
     background_bright = false;
-    kcls();
+    cls();
 }

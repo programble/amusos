@@ -25,13 +25,13 @@ void _panic(const string message, const string function, const string file, cons
     if (recursive_panic)
         halt();
     recursive_panic = true;
-    kputs("\n\nERROR\n\n");
-    kputs(message);
-    kputs("\n\n");
-    kputs(function);
-    kputs("@");
-    kputs(file);
-    kputs(":");
-    kputs(line);
+    puts("\n\nERROR\n\n");
+    puts(message);
+    puts("\n\n");
+    puts(function);
+    puts("@");
+    puts(file);
+    puts(":");
+    puts(line);
     halt();
 }
