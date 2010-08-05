@@ -24,7 +24,7 @@
 #include <tty.h>
 
 #define SYSCALL_INTERRUPT 0x80
-#define SYSCALL_COUNT 1
+#define SYSCALL_COUNT 3
 
 void syscall_install();
 

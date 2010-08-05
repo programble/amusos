@@ -39,7 +39,10 @@ void kmain(multiboot_header *multiboot, u32 magic)
     tty_install();
 
     /* Test syscall */
-    iasm("mov eax, 0x0; int 0x80");
+    iasm("mov eax, 0x02; mov ebx, 0x68; int 0x80");
+    iasm("mov eax, 0x02; mov ebx, 0x65; int 0x80");
+    iasm("mov eax, 0x02; mov ebx, 0x6c; int 0x80; int 0x80");
+    iasm("mov eax, 0x02; mov ebx, 0x6f; int 0x80");
 
     panic("No game to load");
 }

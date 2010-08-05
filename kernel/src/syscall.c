@@ -20,14 +20,21 @@
 
 #include <tty.h>
 
-void syscall_test()
+void syscall_nop()
 {
-    puts("Syscall test");
+    return;
+}
+
+void syscall_putch(char c)
+{
+    putch(c);
 }
 
 static void *syscalls[SYSCALL_COUNT] =
 {
-    syscall_test,
+    syscall_nop, /* TODO: syscall_malloc */
+    syscall_nop, /* TODO: syscall_free */
+    syscall_putch,
 };
 
 void syscall_handler(registers *r)
