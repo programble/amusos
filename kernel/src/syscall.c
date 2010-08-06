@@ -19,6 +19,7 @@
 #include <syscall.h>
 
 #include <tty.h>
+#include <mm.h>
 
 void syscall_nop()
 {
@@ -28,10 +29,15 @@ void syscall_nop()
 SYSCALL_RETURN_WRAP(u8, get_cursor_x);
 SYSCALL_RETURN_WRAP(u8, get_cursor_y);
 
+void syscall_malloc(void **val, u32 size)
+{
+    *val = malloc(size);
+}
+
 static void *syscalls[SYSCALL_COUNT] =
 {
-    /* 0 */ syscall_nop, /* TODO: syscall_malloc */
-    /* 1 */ syscall_nop, /* TODO: syscall_free */
+    /* 0 */ SYSCALL_WRAPPER(malloc),
+    /* 1 */ free,
     /* 2 */ cls,
     /* 3 */ putch,
     /* 4 */ set_foreground_color,

@@ -21,7 +21,6 @@
 
 #include <isr.h>
 #include <idt.h>
-#include <tty.h>
 
 #define SYSCALL_INTERRUPT 0x80
 #define SYSCALL_COUNT 14
