@@ -121,53 +121,53 @@ void get_colors(color *foreground, bool *forebright, color *background, bool *ba
  * Set the text-mode hardware cursor's x position.
  * @param x The x position to set
  */
-void set_cursor_x(char x);
+void set_cursor_x(unsigned char x);
 
 /**
  * Set the text-mode hardware cursor's y position.
  * @param y The y position to set
  */
-void set_cursor_y(char y);
+void set_cursor_y(unsigned char y);
 
 /**
  * Set the text-mode hardware cursor's position.
  * @param x The x position to set
  * @param y The y position to set
  */
-void set_cursor_position(char x, char y);
+void set_cursor_position(unsigned char x, unsigned char y);
 
 /**
  * Get the text-mode hardware cursor's x position.
  * @return The x position
  */
-char get_cursor_x();
+unsigned char get_cursor_x();
 
 /**
  * Get the text-mode hardware cursor's y position.
  * @return The y position
  */
-char get_cursor_y();
+unsigned char get_cursor_y();
 
 /**
  * Get the text-mode hardware cursor's position.
  * @param x Where to store the x position
  * @param y Where to store the y position
  */
-void get_cursor_position(char *x, char *y);
+void get_cursor_position(unsigned char *x, unsigned char *y);
 
 /**
  * Warp the text-mode hardware cursor's x position.
  * @param x How much to warp by
  * @return The new x position
  */
-char warp_cursor_x(signed char x);
+unsigned char warp_cursor_x(signed char x);
 
 /**
  * Warp the text-mode hardware cursor's y position.
  * @param y How much to warp by
  * @return The new y position
  */
-char warp_cursor_y(signed char y);
+unsigned char warp_cursor_y(signed char y);
 
 /**
  * Warp the text-mode hardware cursor's position.

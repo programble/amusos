@@ -46,8 +46,7 @@ static void *syscalls[SYSCALL_COUNT] =
 
 void syscall_handler(registers *r)
 {
-    if (r->eax >= SYSCALL_COUNT)
-        panic("Invalid system call");
+    assert(r->eax < SYSCALL_COUNT, "Invalid system call");
     
     void (*syscall)(u32, u32, u32, u32, u32);
     syscall = syscalls[r->eax];

@@ -66,54 +66,54 @@ void get_colors(color *f, bool *fb, color *b, bool *bb)
     get_background_color(b, bb);
 }
 
-void set_cursor_x(char x)
+void set_cursor_x(unsigned char x)
 {
     syscall1(8, x);
 }
 
-void set_cursor_y(char y)
+void set_cursor_y(unsigned char y)
 {
     syscall1(9, y);
 }
 
-void set_cursor_position(char x, char y)
+void set_cursor_position(unsigned char x, unsigned char y)
 {
     set_cursor_x(x);
     set_cursor_y(y);
 }
 
-char get_cursor_x()
+unsigned char get_cursor_x()
 {
-    char *x;
+    unsigned char *x;
     syscall1(10, x);
     return *x;
 }
 
-char get_cursor_y()
+unsigned char get_cursor_y()
 {
-    char *y;
+    unsigned char *y;
     syscall1(11, y);
     return *y;
 }
 
-void get_cursor_position(char *x, char *y)
+void get_cursor_position(unsigned char *x, unsigned char *y)
 {
     *x = get_cursor_x();
     *y = get_cursor_y();
 }
 
-char warp_cursor_x(signed char x)
+unsigned char warp_cursor_x(signed char x)
 {
-    char old = get_cursor_x();
-    char new = old + x;
+    unsigned char old = get_cursor_x();
+    unsigned char new = old + x;
     set_cursor_x(new);
     return new;
 }
 
-char warp_cursor_y(signed char y)
+unsigned char warp_cursor_y(signed char y)
 {
-    char old = get_cursor_y();
-    char new = old + y;
+    unsigned char old = get_cursor_y();
+    unsigned char new = old + y;
     set_cursor_y(new);
     return new;
 }
