@@ -24,7 +24,7 @@
 #include <tty.h>
 
 #define SYSCALL_INTERRUPT 0x80
-#define SYSCALL_COUNT 12
+#define SYSCALL_COUNT 14
 
 #define SYSCALL_WRAPPER(func) syscall_##func
 #define SYSCALL_RETURN_WRAP(type, func) void SYSCALL_WRAPPER(func) (type *val) { *val = func(); }

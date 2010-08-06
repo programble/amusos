@@ -42,4 +42,5 @@ void _start()
         puts("bar");
     warp_cursor(-2, +1);
     puts("baz");
+    hide_cursor();
 }

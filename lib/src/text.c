@@ -125,3 +125,13 @@ void warp_cursor(signed char x, signed char y)
     warp_cursor_x(x);
     warp_cursor_y(y);
 }
+
+void hide_cursor()
+{
+    syscall0(13);
+}
+
+void show_cursor()
+{
+    syscall0(12);
+}

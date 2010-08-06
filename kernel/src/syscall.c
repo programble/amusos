@@ -42,6 +42,8 @@ static void *syscalls[SYSCALL_COUNT] =
     /* 9 */ set_cursor_y,
     /* 10 */ SYSCALL_WRAPPER(get_cursor_x),
     /* 11 */ SYSCALL_WRAPPER(get_cursor_y),
+    /* 12 */ show_cursor,
+    /* 13 */ hide_cursor,
 };
 
 void syscall_handler(registers *r)

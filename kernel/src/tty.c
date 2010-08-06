@@ -173,6 +173,18 @@ u8 get_cursor_y()
     return cursor.y;
 }
 
+void hide_cursor()
+{
+    outportb(0x3D4, 0x0A);
+    outportb(0x3D5, 16);
+}
+
+void show_cursor()
+{
+    outportb(0x3D4, 0x0A);
+    outportb(0x3D5, 14);
+}
+
 void tty_install()
 {
     vram = (u16*) 0xb8000;

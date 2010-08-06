@@ -54,4 +54,7 @@ void set_cursor_y(u8);
 u8 get_cursor_x();
 u8 get_cursor_y();
 
+void hide_cursor();
+void show_cursor();
+
 #endif

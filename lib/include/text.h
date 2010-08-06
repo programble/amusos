@@ -176,4 +176,14 @@ unsigned char warp_cursor_y(signed char y);
  */
 void warp_cursor(signed char x, signed char y);
 
+/**
+ * Hide the text-mode hardware cursor.
+ */
+void hide_cursor();
+
+/**
+ * Show the text-mode hardware cursor.
+ */
+void show_cursor();
+
 #endif
