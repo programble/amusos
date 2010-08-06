@@ -27,7 +27,7 @@ AFLAGS=-f elf
 LDFLAGS=-melf_i386 -nostdlib -T linker.ld
 
 CSOURCES:=$(wildcard src/*.c)
-COBJECTS:=$(CSOURCES:%.c=%.co)
+COBJECTS:=$(CSOURCES:%.c=%.o)
 
 ASOURCES:=$(wildcard src/*.asm)
 AOBJECTS:=$(ASOURCES:%.asm=%.ao)
@@ -39,7 +39,7 @@ all: $(CSOURCES) $(ASOURCES) $(OUTPUT)
 $(OUTPUT): $(AOBJECTS) $(COBJECTS)
 	$(LD) $(LDFLAGS) $(AOBJECTS) $(COBJECTS) -o $@
 
-%.co: %.c
+%.o: %.c
 	$(CC) $(CFLAGS) -o $@ -c $<
 
 %.ao: %.asm
@@ -48,10 +48,10 @@ $(OUTPUT): $(AOBJECTS) $(COBJECTS)
 debug:
 	@$(MAKE) $(MFLAGS) CFLAGS="$(CFLAGS) $(DFLAGS)"
 
-dryasm:
+dry-asm:
 	@$(MAKE) $(MFLAGS) CFLAGS="$(CFLAGS) -S" $(COBJECTS)
 
-drypp:
+dry-pp:
 	@$(MAKE) $(MFLAGS) CFLAGS="$(CFLAGS) -E" $(COBJECTS)
 
 clean:

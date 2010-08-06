@@ -25,7 +25,7 @@
 #define HSIZE (sizeof(memory_header))
 #define START(header) (void*) ((u32) header + HSIZE)
 #define HEADER(block) (memory_header*) ((u32) block - HSIZE)
-#define CHECK(block) assert(block->magic == MM_MAGIC, "Memory block corrup")
+#define CHECK(block) assert(block->magic == MM_MAGIC, "Memory block corrupt")
 
 typedef struct memory_header
 {
