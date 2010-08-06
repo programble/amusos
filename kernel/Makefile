@@ -48,6 +48,12 @@ $(OUTPUT): $(AOBJECTS) $(COBJECTS)
 debug:
 	@$(MAKE) $(MFLAGS) CFLAGS="$(CFLAGS) $(DFLAGS)"
 
+dryasm:
+	@$(MAKE) $(MFLAGS) CFLAGS="$(CFLAGS) -S" $(COBJECTS)
+
+drypp:
+	@$(MAKE) $(MFLAGS) CFLAGS="$(CFLAGS) -E" $(COBJECTS)
+
 clean:
 	rm -f $(COBJECTS)
 	rm -f $(AOBJECTS)
@@ -61,4 +67,4 @@ distclean: clean
 check-syntax:
 	$(CC) $(CFLAGS) -fsyntax-only $(CHK_SOURCES)
 
-.PHONY: clean distclean check-syntax
+.PHONY: clean distclean check-syntax debug dryasm drypp
