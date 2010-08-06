@@ -20,9 +20,8 @@
 
 void _start()
 {
-    cls();
-    for (int i = 0; i < 80 * 19; i++)
-        puts("a");
+    set_cursor_position(14, 11);
+    puts("ABBA");
     char text[] = "RAINBOW";
     color fore[] = { blue, green, cyan, red, magenta, blue, green };
     color back[] = { magenta, red, cyan, green, blue, magenta, red };
