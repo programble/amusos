@@ -154,11 +154,13 @@ void get_background_color(color *c, bool *bright)
 void set_cursor_x(u8 x)
 {
     cursor.x = x;
+    update_cursor();
 }
 
 void set_cursor_y(u8 y)
 {
     cursor.y = y;
+    update_cursor();
 }
 
 u8 get_cursor_x()
