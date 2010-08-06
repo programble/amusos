@@ -17,6 +17,7 @@
  */
 
 #include <text.h>
+#include <mm.h>
 
 void _start()
 {
@@ -43,4 +44,11 @@ void _start()
     warp_cursor(-2, +1);
     puts("baz");
     hide_cursor();
+    char *baz = malloc(7);
+    baz[0] = 'o';
+    baz[1] = 'm';
+    baz[2] = 'g';
+    baz[3] = 0;
+    puts(baz);
+    free(baz);
 }
