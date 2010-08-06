@@ -84,16 +84,18 @@ void set_cursor_position(unsigned char x, unsigned char y)
 
 unsigned char get_cursor_x()
 {
-    unsigned char *x;
-    syscall1(10, x);
-    return *x;
+    unsigned char x;
+    unsigned char *p = &x;
+    syscall1(10, p);
+    return x;
 }
 
 unsigned char get_cursor_y()
 {
-    unsigned char *y;
-    syscall1(11, y);
-    return *y;
+    unsigned char y;
+    unsigned char *p = &y;
+    syscall1(11, p);
+    return y;
 }
 
 void get_cursor_position(unsigned char *x, unsigned char *y)
