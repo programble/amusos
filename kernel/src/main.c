@@ -23,6 +23,7 @@
 #include <irq.h>
 #include <syscall.h>
 #include <tty.h>
+#include <mm.h>
 #include <loader.h>
 
 void kmain(multiboot_header *multiboot, u32 magic)
@@ -34,6 +35,8 @@ void kmain(multiboot_header *multiboot, u32 magic)
     isr_install();
     irq_install();
     enable_interrupts();
+
+    mm_install(multiboot);
 
     syscall_install();
 
