@@ -52,7 +52,7 @@ void scroll()
 {
     assert(vram, "TTY not installed");
 
-    u32 blank = ' ' | ((((background_color | (background_bright << 3)) << 4) | ((foreground_color | (foreground_bright << 3)) << 4)) << 8);
+    u32 blank = ' ' | ((((background_color | (background_bright << 3)) << 4) | ((foreground_color | (foreground_bright << 3)) & 0x0F)) << 8);
 
     if (cursor.y >= TTY_ROWS)
     {
@@ -62,6 +62,7 @@ void scroll()
 
         /* Blank the last line */
         memsetw(vram + (TTY_ROWS - temp) * TTY_COLS, blank, TTY_COLS);
+        cursor.y = TTY_ROWS - 1;
     }
 }
 
