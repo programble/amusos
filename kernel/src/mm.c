@@ -178,7 +178,7 @@ void *realloc(void *old, u32 size)
     void *new = malloc(size);
     memory_header *header = HEADER(old);
     CHECK(header);
-    memcpy(new, old, header->size);
+    memcpy(new, old, (size < header->size) ? size : header->size);
     free(old);
 
     enable_interrupts();
