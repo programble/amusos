@@ -29,6 +29,8 @@ void syscall_nop()
 SYSCALL_RETURN_WRAP(u8, get_cursor_x);
 SYSCALL_RETURN_WRAP(u8, get_cursor_y);
 
+SYSCALL_RETURN_WRAP(u32, get_cursor_height);
+
 void syscall_malloc(void **val, u32 size)
 {
     *val = malloc(size);
@@ -56,6 +58,8 @@ static void *syscalls[SYSCALL_COUNT] =
     /* 12 */ SYSCALL_WRAPPER(get_cursor_y),
     /* 13 */ show_cursor,
     /* 14 */ hide_cursor,
+    /* 15 */ set_cursor_height,
+    /* 16 */ SYSCALL_WRAPPER(get_cursor_height),
 };
 
 void syscall_handler(registers *r)

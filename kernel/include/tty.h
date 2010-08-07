@@ -57,4 +57,7 @@ u8 get_cursor_y();
 void hide_cursor();
 void show_cursor();
 
+void set_cursor_height(u32);
+u32 get_cursor_height();
+
 #endif

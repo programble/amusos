@@ -173,6 +173,8 @@ u8 get_cursor_y()
     return cursor.y;
 }
 
+u32 cursor_height;
+
 void hide_cursor()
 {
     outportb(0x3D4, 0x0A);
@@ -182,7 +184,18 @@ void hide_cursor()
 void show_cursor()
 {
     outportb(0x3D4, 0x0A);
-    outportb(0x3D5, 14);
+    outportb(0x3D5, cursor_height);
+}
+
+void set_cursor_height(u32 h)
+{
+    cursor_height = 16 - h;
+    show_cursor();
+}
+
+u32 get_cursor_height()
+{
+    return 16 - cursor_height;
 }
 
 void tty_install()
@@ -192,5 +205,6 @@ void tty_install()
     background_color = black;
     foreground_bright = false;
     background_bright = false;
+    set_cursor_height(2);
     cls();
 }
