@@ -23,9 +23,9 @@ void putch(char c)
     syscall1(4, c);
 }
 
-void puts(string s)
+void puts(const string s)
 {
-    for (char *c = s; *c != 0x0; c++)
+    for (const char *c = s; *c != 0x0; c++)
       putch(*c);
 }
 

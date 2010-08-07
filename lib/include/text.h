@@ -53,7 +53,7 @@ void putch(char c);
  * and advances the cursor by the length of the string.
  * @param s The string to put on screen
  */
-void puts(string s);
+void puts(const string s);
 
 /**
  * Clears the text-mode screen.

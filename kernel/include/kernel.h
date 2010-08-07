@@ -44,7 +44,9 @@ typedef signed int s32;
 typedef unsigned long long u64;
 typedef signed long long s64;
 
-typedef char* string;
+/*typedef char* string;*/
+/* Fix so const string works */
+#define string char*
 
 typedef enum
 {
@@ -60,8 +62,8 @@ extern void *link_kernel_end;
 void halt();
 void _panic(const string, const string, const string, const string);
 
-#define panic(x) _panic(x, (string) __FUNCTION__, (string) __FILE__, (string) MACRO_STRING(__LINE__))
-#define assert(x,m) if (!(x)) _panic("Assert failed: " #x "\n" m, (string) __FUNCTION__, (string) __FILE__, (string) MACRO_STRING(__LINE__))
+#define panic(x) _panic(x, __PRETTY_FUNCTION__, __FILE__,  MACRO_STRING(__LINE__))
+#define assert(x,m) if (!(x)) _panic("Assert failed: " #x "\n" m, __PRETTY_FUNCTION__, __FILE__,  MACRO_STRING(__LINE__))
 
 /* IO Ports */
 u8 inportb(u16);

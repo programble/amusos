@@ -121,7 +121,7 @@ void putch(u8 c)
     update_cursor();
 }
 
-void puts(string s)
+void puts(const string s)
 {
     for (u32 i = 0; i < strlen(s); i++)
         putch(s[i]);

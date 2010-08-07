@@ -39,7 +39,7 @@ u16 *memsetw(u16 *dest, u16 val, u32 count)
     return dest;
 }
 
-u32 strlen(string s)
+u32 strlen(const string s)
 {
     u32 i;
     for (i = 0; s[i] != 0; i++);

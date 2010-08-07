@@ -30,6 +30,8 @@ typedef enum
     true
 } bool;
 
-typedef char* string;
+/*typedef char* string;*/
+/* Fix for const: */
+#define string char*
 
 #endif

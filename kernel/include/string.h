@@ -23,6 +23,6 @@ u8 *memcpy(u8*, u8*, u32);
 u8 *memset(u8*, u8, u32);
 u16 *memsetw(u16*, u16, u32);
 
-u32 strlen(string);
+u32 strlen(const string);
 
 #endif

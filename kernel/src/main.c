@@ -42,6 +42,8 @@ void kmain(multiboot_header *multiboot, u32 magic)
 
     tty_install();
 
+    panic("test");
+
     assert(multiboot->flags >> 3 & 1, "No game to load");
     assert(multiboot->mods_count, "No game to load");
     assert(multiboot->mods_count == 1, "How do you expect to play two games at once?");
