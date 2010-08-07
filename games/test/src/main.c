@@ -6,7 +6,7 @@
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
  *  (at your option) any later version.
- * 
+ *
  *  AmusOS is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
@@ -21,10 +21,40 @@
 
 void _start()
 {
-    set_cursor_height(8);
-    if (get_cursor_height() != 8)
-        puts("WTF????");
+    cls();
     hide_cursor();
-    show_cursor();
-    while (1);
+    const char display[25][81] =
+    {
+        " ____   ____   ____   ____                                                     ",
+        "|    | | ___| | ___| |    |                                                    ",
+        " |  |  | __|  |___ |  |  |                                                     ",
+        " |__|  |____| |____|  |__|                                                     ",
+        "                                                                               ",
+        "                                                                               ",
+        "                                                                               ",
+        "                                                                               ",
+        "                                                                               ",
+        "                                                                               ",
+        "                                                                               ",
+        "                                                                               ",
+        "                                                                               ",
+        "                                                                               ",
+        "                                                                               ",
+        "                                                                               ",
+        "                                                                               ",
+        "                                                                               ",
+        "                                                                               ",
+        "                                                                               ",
+        "                                                                               ",
+        "                                                                               ",
+        "                                                                               ",
+        "                                                                               ",
+        "                                                                               ",
+    };
+    for (int i = 0; i < 15; i++)
+    {    
+        puts(display[i]);
+        puts("\n");
+    }
+    while(1);
 }
