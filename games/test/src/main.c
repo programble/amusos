@@ -50,5 +50,6 @@ void _start()
     baz[2] = 'g';
     baz[3] = 0;
     puts(baz);
+    baz = realloc(baz, 10);
     free(baz);
 }

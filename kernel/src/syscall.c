@@ -34,22 +34,28 @@ void syscall_malloc(void **val, u32 size)
     *val = malloc(size);
 }
 
+void syscall_realloc(void **val, void *old, u32 size)
+{
+    *val = realloc(old, size);
+}
+
 static void *syscalls[SYSCALL_COUNT] =
 {
     /* 0 */ SYSCALL_WRAPPER(malloc),
     /* 1 */ free,
-    /* 2 */ cls,
-    /* 3 */ putch,
-    /* 4 */ set_foreground_color,
-    /* 5 */ set_background_color,
-    /* 6 */ get_foreground_color,
-    /* 7 */ get_background_color,
-    /* 8 */ set_cursor_x,
-    /* 9 */ set_cursor_y,
-    /* 10 */ SYSCALL_WRAPPER(get_cursor_x),
-    /* 11 */ SYSCALL_WRAPPER(get_cursor_y),
-    /* 12 */ show_cursor,
-    /* 13 */ hide_cursor,
+    /* 2 */ SYSCALL_WRAPPER(realloc),
+    /* 3 */ cls,
+    /* 4 */ putch,
+    /* 5 */ set_foreground_color,
+    /* 6 */ set_background_color,
+    /* 7 */ get_foreground_color,
+    /* 8 */ get_background_color,
+    /* 9 */ set_cursor_x,
+    /* 10 */ set_cursor_y,
+    /* 11 */ SYSCALL_WRAPPER(get_cursor_x),
+    /* 12 */ SYSCALL_WRAPPER(get_cursor_y),
+    /* 13 */ show_cursor,
+    /* 14 */ hide_cursor,
 };
 
 void syscall_handler(registers *r)

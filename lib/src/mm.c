@@ -30,3 +30,11 @@ void free(void *block)
 {
     syscall1(1, block);
 }
+
+void *realloc(void *old, int size)
+{
+    void *new;
+    void **p = &new;
+    syscall3(2, p, old, size);
+    return new;
+}

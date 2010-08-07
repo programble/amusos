@@ -20,7 +20,7 @@
 
 void putch(char c)
 {
-    syscall1(0x03, c);
+    syscall1(4, c);
 }
 
 void puts(string s)
@@ -31,17 +31,17 @@ void puts(string s)
 
 void cls()
 {
-    syscall0(0x02);
+    syscall0(3);
 }
 
 void set_foreground_color(color c, bool b)
 {
-    syscall2(4, c, b);
+    syscall2(5, c, b);
 }
 
 void set_background_color(color c, bool b)
 {
-    syscall2(5, c, b);
+    syscall2(6, c, b);
 }
 
 void set_colors(color f, bool fb, color b, bool bb)
@@ -52,12 +52,12 @@ void set_colors(color f, bool fb, color b, bool bb)
 
 void get_foreground_color(color *c, bool *b)
 {
-    syscall2(6, c, b);
+    syscall2(7, c, b);
 }
 
 void get_background_color(color *c, bool *b)
 {
-    syscall2(7, c, b);
+    syscall2(8, c, b);
 }
 
 void get_colors(color *f, bool *fb, color *b, bool *bb)
@@ -68,12 +68,12 @@ void get_colors(color *f, bool *fb, color *b, bool *bb)
 
 void set_cursor_x(unsigned char x)
 {
-    syscall1(8, x);
+    syscall1(9, x);
 }
 
 void set_cursor_y(unsigned char y)
 {
-    syscall1(9, y);
+    syscall1(10, y);
 }
 
 void set_cursor_position(unsigned char x, unsigned char y)
@@ -86,7 +86,7 @@ unsigned char get_cursor_x()
 {
     unsigned char x;
     unsigned char *p = &x;
-    syscall1(10, p);
+    syscall1(11, p);
     return x;
 }
 
@@ -94,7 +94,7 @@ unsigned char get_cursor_y()
 {
     unsigned char y;
     unsigned char *p = &y;
-    syscall1(11, p);
+    syscall1(12, p);
     return y;
 }
 
@@ -128,10 +128,10 @@ void warp_cursor(signed char x, signed char y)
 
 void hide_cursor()
 {
-    syscall0(13);
+    syscall0(14);
 }
 
 void show_cursor()
 {
-    syscall0(12);
+    syscall0(13);
 }

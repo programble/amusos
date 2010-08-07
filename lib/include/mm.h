@@ -34,4 +34,14 @@ void *malloc(int size);
  */
 void free(void *block);
 
+/**
+ * Reallocate a block of memory allocated with malloc.
+ * Reallocate a block of memory allocated with malloc to a new size
+ * and copy the old data to the new block.
+ * @param old The old block of memory
+ * @param size The new size
+ * @return The new block
+ */
+void *realloc(void *old, int size);
+
 #endif
