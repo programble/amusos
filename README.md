@@ -1,32 +1,5 @@
 AmusOS
 ======
 
-A gaming operating system.
-
-Components
-----------
-
- * Kernel
- * Game library
- * Game modules
-
-### Diagram
-
-      +----------+
-      | Hardware |
-      +----------+
-           ^
-           |
-       +--------+
-       | Kernel |
-       +--------+
-           ^
-           |
-    +--------------+
-    | Game Library |
-    +--------------+
-           ^
-           |
-    +-------------+
-    | Game Module |
-    +-------------+
+AmusOS is a gaming operating system consisting of a kernel, a game
+library, and games. Games are loaded using multiboot modules.

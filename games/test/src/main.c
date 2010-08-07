@@ -21,39 +21,10 @@
 
 void _start()
 {
-    set_cursor_position(14, 11);
-    puts("ABBA");
-    char text[] = "RAINBOW";
-    color fore[] = { blue, green, cyan, red, magenta, blue, green };
-    color back[] = { magenta, red, cyan, green, blue, magenta, red };
-    for (int i = 0; i < 7; i++)
-    {
-        set_colors(fore[i], true, back[i], false);
-        putch(text[i]);
-    }
-    color foo;
-    bool bar;
-    get_foreground_color(&foo, &bar);
-    if (foo == green)
-        puts("baz");
-    set_cursor_position(10, 10);
-    puts("foo");
-    char x = get_cursor_x();
-    if (x == 13)
-        puts("bar");
-    warp_cursor(-2, +1);
-    puts("baz");
-    char *baz = malloc(7);
-    baz[0] = 'o';
-    baz[1] = 'm';
-    baz[2] = 'g';
-    baz[3] = 0;
-    puts(baz);
-    baz = realloc(baz, 10);
-    free(baz);
     set_cursor_height(8);
     if (get_cursor_height() != 8)
         puts("WTF????");
     hide_cursor();
     show_cursor();
+    while (1);
 }
