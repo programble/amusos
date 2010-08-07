@@ -186,4 +186,16 @@ void hide_cursor();
  */
 void show_cursor();
 
+/**
+ * Change the text-mode hardware cursor's height.
+ * @param height The height
+ */
+void set_cursor_height(unsigned int height);
+
+/**
+ * Get the text-mode hardware cursor's height.
+ * @return The height
+ */
+unsigned int get_cursor_height();
+
 #endif

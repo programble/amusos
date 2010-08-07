@@ -43,7 +43,6 @@ void _start()
         puts("bar");
     warp_cursor(-2, +1);
     puts("baz");
-    hide_cursor();
     char *baz = malloc(7);
     baz[0] = 'o';
     baz[1] = 'm';
@@ -52,4 +51,9 @@ void _start()
     puts(baz);
     baz = realloc(baz, 10);
     free(baz);
+    set_cursor_height(8);
+    if (get_cursor_height() != 8)
+        puts("WTF????");
+    hide_cursor();
+    show_cursor();
 }

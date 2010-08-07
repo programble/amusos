@@ -135,3 +135,16 @@ void show_cursor()
 {
     syscall0(13);
 }
+
+void set_cursor_height(unsigned int height)
+{
+    syscall1(15, height);
+}
+
+unsigned int get_cursor_height()
+{
+    unsigned int height;
+    unsigned int *p = &height;
+    syscall1(16, p);
+    return height;
+}
