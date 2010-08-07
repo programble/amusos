@@ -20,6 +20,7 @@
 #define __MM_H__
 
 #include <multiboot.h>
+#include <string.h>
 
 #define MM_MAGIC (0xE1AFE909)
 #define HSIZE (sizeof(memory_header))
@@ -37,6 +38,7 @@ typedef struct memory_header
 
 void *malloc(u32);
 void free(void*);
+void *realloc(void*, u32);
 
 void mm_install(multiboot_header*);
 

@@ -168,3 +168,19 @@ void free(void *block)
 
     enable_interrupts();
 }
+
+void *realloc(void *old, u32 size)
+{
+    assert(mm_installed, "Memory Manager not installed");
+
+    disable_interrupts();
+
+    void *new = malloc(size);
+    memory_header *header = HEADER(old);
+    CHECK(header);
+    memcpy(new, old, header->size);
+    free(old);
+
+    enable_interrupts();
+    return new;
+}
