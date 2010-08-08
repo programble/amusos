@@ -18,43 +18,21 @@
 
 #include <text.h>
 #include <mm.h>
+#include <timer.h>
 
 void _start()
 {
-    cls();
-    hide_cursor();
-    const char display[25][81] =
+    const char text[23] = "This is the test game. ";
+    for (int i = 0; i < 23; i++)
     {
-        " ____   ____   ____   ____                                                     ",
-        "|    | | ___| | ___| |    |                                                    ",
-        " |  |  | __|  |___ |  |  |                                                     ",
-        " |__|  |____| |____|  |__|                                                     ",
-        "                                                                               ",
-        "                                                                               ",
-        "                                                                               ",
-        "                                                                               ",
-        "                                                                               ",
-        "                                                                               ",
-        "                                                                               ",
-        "                                                                               ",
-        "                                                                               ",
-        "                                                                               ",
-        "                                                                               ",
-        "                                                                               ",
-        "                                                                               ",
-        "                                                                               ",
-        "                                                                               ",
-        "                                                                               ",
-        "                                                                               ",
-        "                                                                               ",
-        "                                                                               ",
-        "                                                                               ",
-        "                                                                               ",
-    };
-    for (int i = 0; i < 15; i++)
-    {    
-        puts(display[i]);
-        puts("\n");
+        putch(text[i]);
+        sleep(10);
     }
-    while(1);
+    hide_cursor();
+    while (1)
+    {
+        putch('_');
+        sleep(50);
+        putch('\b');
+    }
 }

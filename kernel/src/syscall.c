@@ -20,6 +20,7 @@
 
 #include <tty.h>
 #include <mm.h>
+#include <timer.h>
 
 void syscall_nop()
 {
@@ -60,6 +61,7 @@ static void *syscalls[SYSCALL_COUNT] =
     /* 14 */ hide_cursor,
     /* 15 */ set_cursor_height,
     /* 16 */ SYSCALL_WRAPPER(get_cursor_height),
+    /* 17 */ sleep,
 };
 
 void syscall_handler(registers *r)
