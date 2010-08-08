@@ -17,9 +17,12 @@
  */
 
 #include <text.h>
+#include <timer.h>
 
 void _start()
 {
+    cls();
+    sleep(100);
     set_background_color(blue, false);
     cls();
     puts("\n\n\n\n\n\n\n\n");
