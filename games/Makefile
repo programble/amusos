@@ -19,18 +19,18 @@ GAMES:=$(wildcard */)
 
 all:
 	@for game in $(GAMES); do \
-	cd $${game}; $(MAKE) $(MFLAGS); \
+	cd $${game}; $(MAKE) $(MFLAGS); cd ..; \
 	done
 
 clean:
 	@for game in $(GAMES); do \
-	cd $${game}; $(MAKE) $(MFLAGS) clean; \
+	cd $${game}; $(MAKE) $(MFLAGS) clean; cd ..; \
 	done
 
 distclean:
 	rm -f *~
 	@for game in $(GAMES); do \
-	cd $${game}; $(MAKE) $(MFLAGS) distclean; \
+	cd $${game}; $(MAKE) $(MFLAGS) distclean; cd ..; \
 	done
 
 .PHONY: clean distclean all
