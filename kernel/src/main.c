@@ -24,6 +24,7 @@
 #include <syscall.h>
 #include <tty.h>
 #include <mm.h>
+#include <timer.h>
 #include <loader.h>
 
 void kmain(multiboot_header *multiboot, u32 magic)
@@ -41,6 +42,8 @@ void kmain(multiboot_header *multiboot, u32 magic)
     syscall_install();
 
     tty_install();
+
+    timer_install();
 
     puts("AmusOS " VERSION " (" COMPILED ")\n");
 
