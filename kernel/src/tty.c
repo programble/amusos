@@ -77,6 +77,7 @@ void move_cursor_back()
     /* Otherwise, just move back one */
     else
         cursor.x--;
+    update_cursor();
 }
 
 void putch(u8 c)
@@ -90,7 +91,7 @@ void putch(u8 c)
         move_cursor_back();
         putch(' ');
         move_cursor_back();
-        break;
+        return;
     case '\t':
         cursor.x -= (cursor.x % 8) + 8;
         break;

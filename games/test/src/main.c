@@ -26,13 +26,19 @@ void _start()
     for (int i = 0; i < 23; i++)
     {
         putch(text[i]);
-        sleep(10);
+        sleep(20);
     }
-    hide_cursor();
     while (1)
     {
-        putch('_');
-        sleep(50);
-        putch('\b');
+        for (int i = 1; i < 16; i++)
+        {
+            set_cursor_height(i);
+            sleep(10);
+        }
+        for (int i = 16; i > 0; i--)
+        {
+            set_cursor_height(i);
+            sleep(10);
+        }
     }
 }

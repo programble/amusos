@@ -79,7 +79,6 @@ void timer_remove_hook(void (*callback)(void))
     }
 }
 
-#include <tty.h>
 void sleep(u32 ticks)
 {
     u32 start = timer_ticks;
