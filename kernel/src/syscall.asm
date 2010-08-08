@@ -19,7 +19,7 @@ extern syscall_handler ; syscall.c
 
 global isr_syscall
 isr_syscall:
-    sti
+    cli
     push byte 0
     push dword 0x80
     pusha

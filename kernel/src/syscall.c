@@ -70,6 +70,8 @@ void syscall_handler(registers *r)
     
     void (*syscall)(u32, u32, u32, u32, u32);
     syscall = syscalls[r->eax];
+    /* Sleep fix */
+    asm("sti");
     syscall(r->ebx, r->ecx, r->edx, r->esi, r->edi);
 }
 
