@@ -44,7 +44,7 @@ $(ISO): kernel lib games
 	cat $${game}/menu.lst >> iso/boot/grub/menu.lst; \
 	cp $${game}/*.elf iso/games/; \
 	done
-	genisoimage -R -b boot/grub/stage2_eltorito -no-emul-boot -boot-load-size 4 -boot-info-table -o $(ISO) iso/
+	$(GENISOIMAGE) -R -b boot/grub/stage2_eltorito -no-emul-boot -boot-load-size 4 -boot-info-table -o $(ISO) iso/
 
 qemu: $(ISO)
 	qemu -cdrom $(ISO)
