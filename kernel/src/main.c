@@ -44,7 +44,7 @@ void kmain(multiboot_header *multiboot, u32 magic)
     tty_install();
 
     timer_install();
-
+    
     puts("AmusOS " VERSION " (" COMPILED ")\n");
 
     assert(multiboot->flags >> 3 & 1, "No game to load");

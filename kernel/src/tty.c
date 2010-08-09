@@ -40,7 +40,7 @@ void cls()
 {
     assert(vram, "TTY not installed");
 
-    u32 blank = ' ' | ((((background_color | (background_bright << 3)) << 4) | ((foreground_color | (foreground_bright << 3)) & 0x0F)) << 8);
+    u16 blank = ' ' | ((((background_color | (background_bright << 3)) << 4) | ((foreground_color | (foreground_bright << 3)) & 0x0F)) << 8);
     for (u8 i = 0; i < TTY_ROWS; i++)
         memsetw(vram + i * TTY_COLS, blank, TTY_COLS);
     cursor.x = 0;
@@ -52,7 +52,7 @@ void scroll()
 {
     assert(vram, "TTY not installed");
 
-    u32 blank = ' ' | ((((background_color | (background_bright << 3)) << 4) | ((foreground_color | (foreground_bright << 3)) & 0x0F)) << 8);
+    u16 blank = ' ' | ((((background_color | (background_bright << 3)) << 4) | ((foreground_color | (foreground_bright << 3)) & 0x0F)) << 8);
 
     if (cursor.y >= TTY_ROWS)
     {
