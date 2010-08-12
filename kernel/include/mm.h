@@ -22,17 +22,21 @@
 #include <multiboot.h>
 #include <string.h>
 
-#define MM_MAGIC (0xE1AFE909)
+#define MM_FREE_MAGIC (0xE1AFE909)
+#define MM_USED_MAGIC (0xE1AFE908)
 #define HSIZE (sizeof(memory_header))
 #define START(header) (void*) ((u32) header + HSIZE)
 #define HEADER(block) (memory_header*) ((u32) block - HSIZE)
-#define CHECK(block) assert(block->magic == MM_MAGIC, "Memory block corrupt")
+#define CHECK(block) assert(block->magic == MM_FREE_MAGIC || block->magic == MM_USED_MAGIC, "Memory block corrupt")
+#define FREE(block) (block->magic == MM_FREE_MAGIC)
+#define USED(block) (block->magic == MM_USED_MAGIC)
+#define SET_FREE(block) block->magic = MM_FREE_MAGIC
+#define SET_USED(block) block->magic = MM_USED_MAGIC
 
 typedef struct memory_header
 {
     u32 magic;
     u32 size;
-    u8 free;
     struct memory_header *next;
 } memory_header;
 

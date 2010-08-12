@@ -33,9 +33,8 @@ void init_free_block(u32 base, u32 length)
         return;
 
     memory_header *header = (memory_header*) base;
-    header->magic = MM_MAGIC;
+    SET_FREE(header);
     header->size = length - HSIZE;
-    header->free = true;
     header->next = NULL;
 
     if (!first_block)
@@ -99,13 +98,13 @@ void *malloc(u32 size)
     {
         CHECK(block);
 
-        if (!block->free)
+        if (USED(block))
             continue;
 
         /* Block is just the right size */
         if (block->size == size)
         {
-            block->free = false;
+            SET_USED(block);
             enable_interrupts();
             return START(block);
         }
@@ -113,14 +112,13 @@ void *malloc(u32 size)
         else if (block->size > size + HSIZE + sizeof(char))
         {
             memory_header *leftover = (memory_header*) ((u32) START(block) + size);
-            leftover->magic = MM_MAGIC;
+            SET_FREE(leftover);
             leftover->size = block->size - size - HSIZE;
-            leftover->free = true;
             leftover->next = block->next;
 
             block->next = leftover;
             block->size = size;
-            block->free = false;
+            SET_USED(block);
             enable_interrupts();
             return START(block);
         }
@@ -144,10 +142,10 @@ void merge()
             continue;
         }
 
-        if (block->free && block->next->free)
+        if (FREE(block) && FREE(block->next))
         {
             block->size += block->next->size + HSIZE;
-            block->next->magic = ~MM_MAGIC;
+            block->next->magic = 0;
             block->next = block->next->next;
             continue;
         }
@@ -164,7 +162,7 @@ void free(void *block)
 
     memory_header *header = HEADER(block);
     CHECK(header);
-    header->free = true;
+    SET_FREE(header);
 
     merge();
 
