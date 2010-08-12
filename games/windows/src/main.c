@@ -19,7 +19,7 @@
 #include <text.h>
 #include <timer.h>
 
-void _start()
+void main()
 {
     cls();
     sleep(100);

@@ -45,7 +45,7 @@ void kmain(multiboot_header *multiboot, u32 magic)
 
     timer_install();
     
-    puts("AmusOS " VERSION " (" COMPILED ")\n");
+    puts("AmusOS Kernel " VERSION " (" COMPILED ")\n");
 
     assert(multiboot->flags >> 3 & 1, "No game to load");
     assert(multiboot->mods_count, "No game to load");
