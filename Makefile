@@ -49,6 +49,9 @@ $(ISO): kernel lib games
 qemu: $(ISO)
 	qemu -cdrom $(ISO)
 
+qemu-gdb: $(ISO)
+	qemu -s -S -cdrom $(ISO)
+
 todo:
 	@grep -rInso 'TODO: \([^*]\+\)' kernel; true
 	@grep -rInso 'TODO: \([^*]\+\)' lib; true
@@ -69,4 +72,4 @@ distclean:
 	@cd lib/; $(MAKE) $(MFLAGS) distclean
 	@cd games/; $(MAKE) $(MFLAGS) distclean
 
-.PHONY: clean distclean kernel lib games qemu todo iso
+.PHONY: clean distclean kernel lib games qemu todo iso qemu-gdb
