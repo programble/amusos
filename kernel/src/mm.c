@@ -124,14 +124,6 @@ void *malloc(u32 size)
             enable_interrupts();
             return START(block);
         }
-        /* Block is bigger, but is not big enough to be split,
-           so just give them some extra room */
-        else
-        {
-            block->free = false;
-            enable_interrupts();
-            return START(block);
-        }
     }
     panic("Out of memory");
     return NULL;
