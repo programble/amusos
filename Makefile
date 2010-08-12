@@ -30,10 +30,10 @@ lib:
 games: lib
 	@cd games/; $(MAKE) $(MFLAGS)
 
-iso: kernel lib games $(ISO)
+iso: kernel lib games
+	@$(MAKE) $(MFLAGS) $(ISO)
 
-$(ISO): iso/boot/grub/stage2_eltorito iso/boot/kernel.elf iso/boot/grub/menu.lst
-	@$(MAKE) $(MFLAGS) iso/games
+$(ISO): iso/boot/grub/stage2_eltorito iso/boot/kernel.elf iso/boot/grub/menu.lst iso/games
 	$(GENISOIMAGE) -R -b boot/grub/stage2_eltorito -no-emul-boot -boot-load-size 4 -boot-info-table -o $(ISO) iso/
 
 iso/boot/grub/stage2_eltorito: $(STAGE2)
