@@ -19,7 +19,7 @@ STAGE2=/usr/lib/grub/i386-pc/stage2_eltorito
 GENISOIMAGE=genisoimage
 ISO=amusos.iso
 
-all: $(ISO)
+all: iso
 
 kernel:
 	@cd kernel/; $(MAKE) $(MFLAGS)
@@ -30,21 +30,27 @@ lib:
 games: lib
 	@cd games/; $(MAKE) $(MFLAGS)
 
-iso: $(ISO)
+iso: kernel lib games $(ISO)
 
-$(ISO): kernel lib games
-	mkdir -p iso
-	mkdir -p iso/boot/grub
-	mkdir -p iso/games
-	cp $(STAGE2) iso/boot/grub/stage2_eltorito
-	cp kernel/kernel.elf iso/boot/kernel.elf
-	echo "default 0" > iso/boot/grub/menu.lst
-	echo "timeout 10" >> iso/boot/grub/menu.lst
-	for game in games/*/; do \
-	cat $${game}/menu.lst >> iso/boot/grub/menu.lst; \
-	cp $${game}/*.elf iso/games/; \
-	done
+$(ISO): iso/boot/grub/stage2_eltorito iso/boot/kernel.elf iso/boot/grub/menu.lst
+	@$(MAKE) $(MFLAGS) iso/games
 	$(GENISOIMAGE) -R -b boot/grub/stage2_eltorito -no-emul-boot -boot-load-size 4 -boot-info-table -o $(ISO) iso/
+
+iso/boot/grub/stage2_eltorito: $(STAGE2)
+	@mkdir -p $(@D)
+	cp $< $@
+
+iso/boot/kernel.elf: kernel/kernel.elf
+	@mkdir -p $(@D)
+	cp $< $@
+
+iso/boot/grub/menu.lst: menu.lst $(wildcard games/*/menu.lst)
+	@mkdir -p $(@D)
+	cat $^ > $@
+
+iso/games: $(wildcard games/*/*.elf)
+	@mkdir -p $@
+	cp $^ $@
 
 qemu: $(ISO)
 	qemu -cdrom $(ISO)
