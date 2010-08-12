@@ -36,7 +36,7 @@ OUTPUT=kernel.elf
 
 all: $(CSOURCES) $(ASOURCES) $(OUTPUT)
 
-$(OUTPUT): $(AOBJECTS) $(COBJECTS)
+$(OUTPUT): include/version.h $(AOBJECTS) $(COBJECTS)
 	$(LD) $(LDFLAGS) $(AOBJECTS) $(COBJECTS) -o $@
 
 %.o: %.c
@@ -44,6 +44,9 @@ $(OUTPUT): $(AOBJECTS) $(COBJECTS)
 
 %.ao: %.asm
 	$(ASM) $(AFLAGS) -o $@ $<
+
+include/version.h: $(CSOURCES)
+	@echo "#define VERSION \"git-$(shell git rev-parse HEAD | cut -c-20)\"" > $@
 
 debug:
 	@$(MAKE) $(MFLAGS) CFLAGS="$(CFLAGS) $(DFLAGS)"
@@ -55,6 +58,7 @@ dry-pp:
 	@$(MAKE) $(MFLAGS) CFLAGS="$(CFLAGS) -E" $(COBJECTS)
 
 clean:
+	rm -f include/version.h
 	rm -f $(COBJECTS)
 	rm -f $(AOBJECTS)
 	rm -f $(OUTPUT)

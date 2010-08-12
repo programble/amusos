@@ -24,7 +24,8 @@
 #define MACRO_STRING(x) STRING(x)
 
 /* Version information */
-#define VERSION "0.1.0"
+#include <version.h>
+/*#define VERSION "0.1.0"*/
 #define COMPILED __DATE__
 
 /* Macros */
