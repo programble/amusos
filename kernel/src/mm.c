@@ -102,12 +102,14 @@ void *malloc(u32 size)
         if (!block->free)
             continue;
 
+        /* Block is just the right size */
         if (block->size == size)
         {
             block->free = false;
             enable_interrupts();
             return START(block);
         }
+        /* Block is bigger, and big enough to be split */
         else if (block->size > size + HSIZE + sizeof(char))
         {
             memory_header *leftover = (memory_header*) ((u32) START(block) + size);
@@ -118,6 +120,14 @@ void *malloc(u32 size)
 
             block->next = leftover;
             block->size = size;
+            block->free = false;
+            enable_interrupts();
+            return START(block);
+        }
+        /* Block is bigger, but is not big enough to be split,
+           so just give them some extra room */
+        else
+        {
             block->free = false;
             enable_interrupts();
             return START(block);
