@@ -32,12 +32,19 @@ OUTPUT=gamelib.lib
 
 all: $(SOURCES) $(OUTPUT)
 
-$(OUTPUT): $(OBJECTS)
+$(OUTPUT): include/version.h $(OBJECTS)
 	$(AR) $(ARFLAGS) $(OUTPUT) $(OBJECTS)
 	$(RANLIB) $(OUTPUT)
 
 %.o: %.c
 	$(CC) $(CFLAGS) -o $@ -c $<
+
+include/version.h: $(SOURCES)
+	@if [ "$(shell git tag --contains $(shell git rev-parse HEAD))" ]; then \
+	echo "#define VERSION \"$(shell git tag --contains $(shell git rev-parse HEAD) | cut -c2-)\"" > $@; \
+	else \
+	echo "#define VERSION \"git-$(shell git rev-parse HEAD | cut -c-20)\"" > $@; \
+	fi
 
 doc: $(wildcard include/*.h) .doxygenrc
 	doxygen .doxygenrc
