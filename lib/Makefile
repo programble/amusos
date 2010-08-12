@@ -50,6 +50,7 @@ doc: $(wildcard include/*.h) .doxygenrc
 	doxygen .doxygenrc
 
 clean:
+	rm -f include/version.h
 	rm -f $(OBJECTS)
 	rm -f $(OUTPUT)
 	rm -rf doc/
