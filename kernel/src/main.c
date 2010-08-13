@@ -23,6 +23,7 @@
 #include <irq.h>
 #include <syscall.h>
 #include <tty.h>
+#include <keyboard.h>
 #include <mm.h>
 #include <timer.h>
 #include <loader.h>
@@ -38,12 +39,10 @@ void kmain(multiboot_header *multiboot, u32 magic)
     enable_interrupts();
 
     mm_install(multiboot);
-
-    syscall_install();
-
-    tty_install();
-
     timer_install();
+    tty_install();
+    keyboard_install();
+    syscall_install();
     
     puts("AmusOS Kernel " VERSION);
 #ifdef DEBUG

@@ -79,4 +79,4 @@ distclean:
 	@cd lib/; $(MAKE) $(MFLAGS) distclean
 	@cd games/; $(MAKE) $(MFLAGS) distclean
 
-.PHONY: clean distclean kernel lib games qemu todo iso qemu-gdb
+.PHONY: kernel lib games iso clean distclean qemu qemu-gdb todo

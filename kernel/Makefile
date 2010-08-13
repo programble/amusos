@@ -72,7 +72,7 @@ distclean: clean
 	rm -f src/*~
 	rm -f include/*~
 
-check-syntax:
+check-syntax: include/version.h
 	$(CC) $(CFLAGS) -fsyntax-only $(CHK_SOURCES)
 
 .PHONY: clean distclean check-syntax debug dryasm drypp
