@@ -64,6 +64,14 @@ todo:
 	@grep -rInso 'TODO: \([^*]\+\)' lib; true
 	@grep -rInso 'TODO: \([^*]\+\)' games; true
 
+sloc:
+	@sloccount ./ | grep "(SLOC)"
+
+git-stats:
+	@echo "$(shell git log --oneline | wc -l) commits"
+	@echo "$(shell git log -p | grep -v '\++' | grep -c '^+') additions"
+	@echo "$(shell git log -p | grep -v '\-+' | grep -c '^-') deletions"
+
 clean:
 	rm -rf iso/
 	rm -f $(ISO)
@@ -79,4 +87,4 @@ distclean:
 	@cd lib/; $(MAKE) $(MFLAGS) distclean
 	@cd games/; $(MAKE) $(MFLAGS) distclean
 
-.PHONY: kernel lib games iso clean distclean qemu qemu-gdb todo
+.PHONY: kernel lib games iso clean distclean qemu qemu-gdb todo sloc git-stats
