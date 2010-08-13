@@ -21,6 +21,7 @@
 
 #include <tty.h>
 #include <irq.h>
+#include <mm.h>
 
 typedef enum
 {
@@ -39,5 +40,7 @@ typedef struct
 } key_event;
 
 void keyboard_install();
+
+key_event get_key_event();
 
 #endif

@@ -101,6 +101,44 @@ char keymap_shift[128] =
     0,
 };
 
+typedef struct event_queue
+{
+    key_event event;
+    struct event_queue *previous;
+} event_queue;
+
+event_queue *event_queue_head;
+event_queue *event_queue_tail;
+
+void event_enqueue(key_event event)
+{
+    event_queue *new = malloc(sizeof(event_queue));
+    new->event = event;
+    new->previous = NULL;
+    if (event_queue_tail)
+    {
+        event_queue_tail->previous = new;
+        event_queue_tail = new;
+    }
+    else
+    {
+        event_queue_head = new;
+        event_queue_tail = new;
+    }
+}
+
+key_event event_dequeue()
+{
+    assert(event_queue_head, "No key events in queue");
+    key_event event = event_queue_head->event;
+    event_queue *first = event_queue_head;
+    event_queue_head = first->previous;
+    if (event_queue_tail == first)
+        event_queue_tail = NULL;
+    free(first);
+    return event;
+}
+
 void keyboard_handler(registers *r)
 {
     u8 scancode = inportb(0x60);
@@ -141,17 +179,20 @@ void keyboard_handler(registers *r)
         /* Ignore */;
     else
     {
-        /* TODO: Something with the event */
-#ifdef DEBUG
-        if (event.shift) puts("shift");
-        if (event.ctrl) puts("ctrl");
-        if (event.alt) puts("alt");
-        if (event.type == key_event_down) putch(event.keychar);
-#endif
+        event_enqueue(event);
     }
 }
 
 void keyboard_install()
 {
     irq_install_handler(1, keyboard_handler);
+}
+
+key_event get_key_event()
+{
+    /* Wait for an event */
+    /* TODO: Provide non-blocking events */
+    while (!event_queue_head)
+        asm("hlt");
+    return event_dequeue();
 }
