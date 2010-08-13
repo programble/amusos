@@ -28,7 +28,7 @@ ARFLAGS=rc
 SOURCES:=$(wildcard src/*.c)
 OBJECTS:=$(SOURCES:%.c=%.o)
 
-OUTPUT=gamelib.lib
+OUTPUT=amusos.a
 
 all: $(SOURCES) $(OUTPUT)
 

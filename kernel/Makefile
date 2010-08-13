@@ -32,7 +32,7 @@ COBJECTS:=$(CSOURCES:%.c=%.o)
 ASOURCES:=$(wildcard src/*.asm)
 AOBJECTS:=$(ASOURCES:%.asm=%.ao)
 
-OUTPUT=kernel.elf
+OUTPUT=amusos.elf
 
 all: $(CSOURCES) $(ASOURCES) $(OUTPUT)
 

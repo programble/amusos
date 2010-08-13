@@ -33,14 +33,14 @@ games: lib
 iso: kernel games
 	@$(MAKE) $(MFLAGS) $(ISO)
 
-$(ISO): iso/boot/grub/stage2_eltorito iso/boot/kernel.elf iso/boot/grub/menu.lst iso/games/makeisstupid
+$(ISO): iso/boot/grub/stage2_eltorito iso/boot/amusos.elf iso/boot/grub/menu.lst iso/games/makeisstupid
 	$(GENISOIMAGE) -R -b boot/grub/stage2_eltorito -no-emul-boot -boot-load-size 4 -boot-info-table -o $(ISO) iso/
 
 iso/boot/grub/stage2_eltorito: $(STAGE2)
 	@mkdir -p $(@D)
 	cp $< $@
 
-iso/boot/kernel.elf: kernel/kernel.elf
+iso/boot/amusos.elf: kernel/amusos.elf
 	@mkdir -p $(@D)
 	cp $< $@
 
