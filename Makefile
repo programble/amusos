@@ -69,8 +69,8 @@ sloc:
 
 git-stats:
 	@echo "$(shell git log --oneline | wc -l) commits"
-	@echo "$(shell git log -p | grep -v '\++' | grep -c '^+') additions"
-	@echo "$(shell git log -p | grep -v '\-+' | grep -c '^-') deletions"
+	@echo "$(shell git log -p | grep -v '+++' | grep -c '^+') additions"
+	@echo "$(shell git log -p | grep -v -e '---' | grep -c '^-') deletions"
 
 clean:
 	rm -rf iso/
