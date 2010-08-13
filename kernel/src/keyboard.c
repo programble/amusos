@@ -18,16 +18,12 @@
 
 #include <keyboard.h>
 
-bool echo_mode = true;
-
 bool left_shift = false;
 bool right_shift = false;
 
-bool left_ctrl = false;
-bool right_ctrl = false;
+bool ctrl = false;
 
-bool left_alt = false;
-bool right_alt = false;
+bool alt = false;
 
 char keymap[128] =
 {
@@ -122,26 +118,40 @@ void keyboard_handler(registers *r)
     event.keycode = scancode;
     event.keychar = (left_shift || right_shift) ? keymap_shift[scancode] : keymap[scancode];
     event.shift = left_shift || right_shift;
-    event.ctrl = left_ctrl || right_ctrl;
-    event.alt = left_alt || right_alt;
+    event.ctrl = ctrl;
+    event.alt = alt;
 
-    bool printable = true;
-
-    if (event.keycode == 0x2A)
+    if (event.keycode == 0x2A && event.type == key_event_down)
+        left_shift = true;
+    else if (event.keycode == 0x2A && event.type == key_event_up)
+        left_shift = false;
+    else if (event.keycode == 0x36 && event.type == key_event_down)
+        right_shift = true;
+    else if (event.keycode == 0x36 && event.type == key_event_up)
+        right_shift = false;
+    else if (event.keycode == 0x1D && event.type == key_event_down)
+        ctrl = true;
+    else if (event.keycode == 0x1D && event.type == key_event_up)
+        ctrl = false;
+    else if (event.keycode == 0x38 && event.type == key_event_down)
+        alt = true;
+    else if (event.keycode == 0x38 && event.type == key_event_up)
+        alt = false;
+    else if (event.keycode == 0x60)
     {
-        left_shift = !left_shift;
-        printable = false;
+        ctrl = false;
+        alt = false;
     }
-    else if (event.keycode == 0x36)
+    else
     {
-        right_shift = !right_shift;
-        printable = false;
+        /* TODO: Something with the event */
+#ifdef DEBUG
+        if (event.shift) puts("shift");
+        if (event.ctrl) puts("ctrl");
+        if (event.alt) puts("alt");
+        if (event.type == key_event_down) putch(event.keychar);
+#endif
     }
-
-    /* TODO: Handle ctrl and alt */
-
-    if (echo_mode && printable && event.type == key_event_down)
-        putch(event.keychar);
 }
 
 void keyboard_install()
