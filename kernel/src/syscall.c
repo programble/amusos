@@ -21,6 +21,7 @@
 #include <tty.h>
 #include <mm.h>
 #include <timer.h>
+#include <keyboard.h>
 
 void syscall_nop()
 {
@@ -42,6 +43,8 @@ void syscall_realloc(void **val, void *old, u32 size)
     *val = realloc(old, size);
 }
 
+SYSCALL_RETURN_WRAP(key_event, get_key_event);
+
 static void *syscalls[SYSCALL_COUNT] =
 {
     /* 0 */ SYSCALL_WRAPPER(malloc),
@@ -61,7 +64,8 @@ static void *syscalls[SYSCALL_COUNT] =
     /* 14 */ hide_cursor,
     /* 15 */ set_cursor_height,
     /* 16 */ SYSCALL_WRAPPER(get_cursor_height),
-    /* 17 */ sleep,
+    /* 17 */ SYSCALL_WRAPPER(get_key_event),
+    /* 18 */ sleep,
 };
 
 void syscall_handler(registers *r)
