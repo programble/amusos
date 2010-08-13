@@ -53,10 +53,10 @@ iso/games/makeisstupid: $(wildcard games/*/*.elf)
 	@touch $@
 	cp $^ $(@D)
 
-qemu: $(ISO)
+qemu: iso
 	qemu -cdrom $(ISO)
 
-qemu-gdb: $(ISO)
+qemu-gdb: iso
 	qemu -s -S -cdrom $(ISO)
 
 todo:
