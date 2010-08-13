@@ -138,10 +138,7 @@ void keyboard_handler(registers *r)
     else if (event.keycode == 0x38 && event.type == key_event_up)
         alt = false;
     else if (event.keycode == 0x60)
-    {
-        ctrl = false;
-        alt = false;
-    }
+        /* Ignore */;
     else
     {
         /* TODO: Something with the event */
