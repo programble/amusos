@@ -33,7 +33,7 @@ games: lib
 iso: kernel games
 	@$(MAKE) $(MFLAGS) $(ISO)
 
-$(ISO): iso/boot/grub/stage2_eltorito iso/boot/amusos.elf iso/boot/grub/menu.lst iso/games/makeisstupid
+$(ISO): iso/boot/grub/stage2_eltorito iso/boot/amusos.elf iso/boot/grub/menu.lst iso/games/bananas
 	$(GENISOIMAGE) -R -b boot/grub/stage2_eltorito -no-emul-boot -boot-load-size 4 -boot-info-table -o $(ISO) iso/
 
 iso/boot/grub/stage2_eltorito: $(STAGE2)
@@ -48,7 +48,7 @@ iso/boot/grub/menu.lst: menu.lst $(wildcard games/*/menu.lst)
 	@mkdir -p $(@D)
 	cat $^ > $@
 
-iso/games/makeisstupid: $(wildcard games/*/*.elf)
+iso/games/bananas: $(wildcard games/*/*.elf)
 	@mkdir -p $(@D)
 	@touch $@
 	cp $^ $(@D)
