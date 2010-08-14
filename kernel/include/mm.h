@@ -27,7 +27,7 @@
 #define HSIZE (sizeof(memory_header))
 #define START(header) (void*) ((u32) header + HSIZE)
 #define HEADER(block) (memory_header*) ((u32) block - HSIZE)
-#define CHECK(block) assert(block->magic == MM_FREE_MAGIC || block->magic == MM_USED_MAGIC, "Memory block corrupt")
+#define CHECK(block) assert(block->magic >> 1 == 0x70D7F484, "Memory block corrupt")
 #define FREE(block) (block->magic == MM_FREE_MAGIC)
 #define USED(block) (block->magic == MM_USED_MAGIC)
 #define SET_FREE(block) block->magic = MM_FREE_MAGIC
