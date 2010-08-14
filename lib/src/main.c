@@ -25,7 +25,7 @@ void _start()
 {
     puts("AmusOS Library\n ");
     puts(VERSION "\n ");
-    puts(__TIMESTAMP__ "\n ");
+    puts(__DATE__ " " __TIME__ "\n ");
     puts(COMPILER "\n");
     main();
 }

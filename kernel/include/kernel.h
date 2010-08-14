@@ -25,8 +25,7 @@
 
 /* Version information */
 #include <version.h>
-/*#define VERSION "0.1.0"*/
-#define COMPILED __TIMESTAMP__
+#define COMPILED __DATE__ " " __TIME__
 
 /* Macros */
 #define asm(x) __asm__ __volatile__(x)
