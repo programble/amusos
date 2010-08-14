@@ -23,7 +23,7 @@ void *load_game(void* game)
     Elf32_Ehdr *ehdr = game;
 
     /* Ensure game is ELF */
-    assert((ehdr->e_ident[EI_MAG0] == ELFMAG0 && ehdr->e_ident[EI_MAG1] == ELFMAG1 && ehdr->e_ident[EI_MAG2] == ELFMAG2 && ehdr->e_ident[EI_MAG3] == ELFMAG3), "Game is not and ELF file");
+    assert((ehdr->e_ident[EI_MAG0] == ELFMAG0 && ehdr->e_ident[EI_MAG1] == ELFMAG1 && ehdr->e_ident[EI_MAG2] == ELFMAG2 && ehdr->e_ident[EI_MAG3] == ELFMAG3), "Game is not an ELF file");
 
     /* Ensure game is executable */
     assert(ehdr->e_type == ET_EXEC, "Game is not executable");
