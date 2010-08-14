@@ -23,6 +23,9 @@ extern void main();
 
 void _start()
 {
-    puts("AmusOS Library " VERSION " (" __DATE__ ")\n");
+    puts("AmusOS Library\n ");
+    puts(VERSION "\n ");
+    puts(__TIMESTAMP__ "\n ");
+    puts(COMPILER "\n");
     main();
 }

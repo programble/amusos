@@ -43,20 +43,23 @@ void kmain(multiboot_header *multiboot, u32 magic)
     tty_install();
     keyboard_install();
     syscall_install();
-    
-    puts("AmusOS Kernel " VERSION);
+
+    puts("AmusOS Kernel\n ");
+    puts(VERSION);
 #ifdef DEBUG
     puts("-DEBUG");
 #endif
-    puts(" (" COMPILED ")\n");
+    puts("\n ");
+    puts(COMPILED "\n ");
+    puts(COMPILER "\n");
 
     assert(multiboot->flags >> 3 & 1, "No game to load");
     assert(multiboot->mods_count, "No game to load");
     assert(multiboot->mods_count == 1, "How do you expect to play two games at once?");
 
-    puts("Loading game: ");
+    /*puts("Loading game: ");
     puts(multiboot->mods_addr->name);
-    putch('\n');
+    putch('\n');*/
 
     void (*game)(void) = load_game((void*) multiboot->mods_addr->start);
     game();

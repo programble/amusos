@@ -51,6 +51,7 @@ include/version.h: $(CSOURCES)
 	else \
 	echo "#define VERSION \"git-$(shell git rev-parse HEAD | cut -c-20)\"" > $@; \
 	fi
+	@echo "#define COMPILER \"$(CC) \" __VERSION__" >> $@
 
 debug:
 	@$(MAKE) $(MFLAGS) CFLAGS="$(CFLAGS) $(DFLAGS)"
