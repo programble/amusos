@@ -33,17 +33,22 @@ SYSCALL_RETURN_WRAP(u8, get_cursor_y);
 
 SYSCALL_RETURN_WRAP(u32, get_cursor_height);
 
-void syscall_malloc(void **val, u32 size)
+void SYSCALL_WRAPPER(malloc)(void **val, u32 size)
 {
     *val = malloc(size);
 }
 
-void syscall_realloc(void **val, void *old, u32 size)
+void SYSCALL_WRAPPER(realloc)(void **val, void *old, u32 size)
 {
     *val = realloc(old, size);
 }
 
 SYSCALL_RETURN_WRAP(key_event, get_key_event);
+
+void SYSCALL_WRAPPER(get_key_event_nonblocking)(bool *val, key_event *dest)
+{
+    *val = get_key_event_nonblocking(dest);
+}
 
 static void *syscalls[SYSCALL_COUNT] =
 {
@@ -65,7 +70,8 @@ static void *syscalls[SYSCALL_COUNT] =
     /* 15 */ set_cursor_height,
     /* 16 */ SYSCALL_WRAPPER(get_cursor_height),
     /* 17 */ SYSCALL_WRAPPER(get_key_event),
-    /* 18 */ sleep,
+    /* 18 */ SYSCALL_WRAPPER(get_key_event_nonblocking),
+    /* 19 */ sleep,
 };
 
 void syscall_handler(registers *r)

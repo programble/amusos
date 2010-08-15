@@ -191,7 +191,6 @@ void keyboard_install()
 key_event get_key_event()
 {
     /* Wait for an event */
-    /* TODO: Provide non-blocking events */
     while (!event_queue_head)
         asm("hlt");
     return event_dequeue();
@@ -206,4 +205,3 @@ bool get_key_event_nonblocking(key_event *dest)
     }
     return false;
 }
-    
