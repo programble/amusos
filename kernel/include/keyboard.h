@@ -42,5 +42,6 @@ typedef struct
 void keyboard_install();
 
 key_event get_key_event();
+bool get_key_event_nonblocking(key_event*);
 
 #endif

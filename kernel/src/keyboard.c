@@ -196,3 +196,14 @@ key_event get_key_event()
         asm("hlt");
     return event_dequeue();
 }
+
+bool get_key_event_nonblocking(key_event *dest)
+{
+    if (event_queue_head)
+    {
+        *dest = event_dequeue();
+        return true;
+    }
+    return false;
+}
+    
