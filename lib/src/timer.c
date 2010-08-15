@@ -20,5 +20,5 @@
 
 void sleep(unsigned int ticks)
 {
-    syscall1(18, ticks);
+    syscall1(19, ticks);
 }
