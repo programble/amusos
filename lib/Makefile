@@ -39,11 +39,11 @@ $(OUTPUT): include/version.h $(OBJECTS)
 %.o: %.c
 	$(CC) $(CFLAGS) -o $@ -c $<
 
-include/version.h: $(SOURCES)
+include/version.h: $(SOURCES) Makefile
 	@if [ "$(shell git tag --contains $(shell git rev-parse HEAD))" ]; then \
 	echo "#define VERSION \"$(shell git tag --contains $(shell git rev-parse HEAD) | cut -c2-)\"" > $@; \
 	else \
-	echo "#define VERSION \"git-$(shell git rev-parse HEAD | cut -c-20)\"" > $@; \
+	echo "#define VERSION \"$(shell git tag | cut -c2-).r$(shell git rev-parse HEAD | cut -c-8)\"" > $@; \
 	fi
 	@echo "#define COMPILER \"$(CC) \" __VERSION__" >> $@
 
