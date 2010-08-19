@@ -46,12 +46,15 @@ $(OUTPUT): include/version.h $(AOBJECTS) $(COBJECTS)
 	$(ASM) $(AFLAGS) -o $@ $<
 
 include/version.h: $(CSOURCES) Makefile
+	@echo "#ifndef __VERSION_H__" > $@
+	@echo "#define __VERSION_H__" >> $@
 	@if [ "$(shell git tag --contains $(shell git rev-parse HEAD))" ]; then \
-	echo "#define VERSION \"$(shell git tag --contains $(shell git rev-parse HEAD) | cut -c2-)\"" > $@; \
+	echo "#define VERSION \"$(shell git tag --contains $(shell git rev-parse HEAD) | cut -c2-)\"" >> $@; \
 	else \
-	echo "#define VERSION \"$(shell git tag | cut -c2-).r$(shell git rev-parse HEAD | cut -c-8)\"" > $@; \
+	echo "#define VERSION \"$(shell git tag | cut -c2-).r$(shell git rev-parse HEAD | cut -c-8)\"" >> $@; \
 	fi
 	@echo "#define COMPILER \"$(CC) \" __VERSION__" >> $@
+	@echo "#endif" >> $@
 
 debug:
 	@$(MAKE) $(MFLAGS) CFLAGS="$(CFLAGS) $(DFLAGS)"
